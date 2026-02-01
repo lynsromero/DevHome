@@ -25,7 +25,7 @@ class ProjectSeeder extends Seeder
         Projects::create([
             'user_id' => $user->id,
             'title' => 'E-Commerce Platform',
-            'slug' => 'ecommerce-platform',
+            'slug' => '',
             'description' => 'A full-featured e-commerce platform built with Laravel and Vue.js. Features include user authentication, product catalog, shopping cart, and payment integration.',
             'thumbnail' => 'projects/ecommerce-thumb.jpg',
             'github_url' => 'https://github.com/example/ecommerce-platform',
@@ -37,7 +37,7 @@ class ProjectSeeder extends Seeder
         Projects::create([
             'user_id' => $user->id,
             'title' => 'Task Management System',
-            'slug' => 'task-management-system',
+            'slug' => '',
             'description' => 'A collaborative task management application with real-time updates, team collaboration features, and analytics dashboard.',
             'thumbnail' => 'projects/taskmanager-thumb.jpg',
             'github_url' => 'https://github.com/example/task-manager',
@@ -49,7 +49,7 @@ class ProjectSeeder extends Seeder
         Projects::create([
             'user_id' => $user->id,
             'title' => 'Weather Dashboard',
-            'slug' => 'weather-dashboard',
+            'slug' => '',
             'description' => 'A responsive weather dashboard that displays real-time weather data, forecasts, and interactive maps for multiple locations.',
             'thumbnail' => 'projects/weather-thumb.jpg',
             'github_url' => 'https://github.com/example/weather-dashboard',
@@ -61,7 +61,7 @@ class ProjectSeeder extends Seeder
         Projects::create([
             'user_id' => $user->id,
             'title' => 'Blog Platform',
-            'slug' => 'blog-platform',
+            'slug' => '',
             'description' => 'A modern blogging platform with markdown support, SEO optimization, comments system, and social sharing features.',
             'thumbnail' => 'projects/blog-thumb.jpg',
             'github_url' => 'https://github.com/example/blog-platform',
@@ -73,7 +73,7 @@ class ProjectSeeder extends Seeder
         Projects::create([
             'user_id' => $user->id,
             'title' => 'Inventory Management',
-            'slug' => 'inventory-management',
+            'slug' => '',
             'description' => 'A comprehensive inventory management system for small businesses with barcode scanning, reporting, and supplier management.',
             'thumbnail' => 'projects/inventory-thumb.jpg',
             'github_url' => 'https://github.com/example/inventory-management',

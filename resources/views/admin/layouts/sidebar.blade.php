@@ -46,7 +46,7 @@
             </div>
 
             <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Website Settings</a>
-            <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Comments</a>
+            <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>E-mails</a>
             <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Dev List</a>
         </div>
     </nav>

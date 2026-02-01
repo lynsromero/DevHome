@@ -22,5 +22,10 @@ class Projects extends Model
         'tech_stack' => 'array',
     ];
 
+
+    public function dailyViews()
+{
+    return $this->hasMany(ProjectView::class, 'projects_id');
+}
 }
 

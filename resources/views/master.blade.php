@@ -38,5 +38,7 @@
     <!-- ===== Footer Start ===== -->
     @include('footer')
     <!-- ====== Footer Section Start -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @stack('scripts')
 <script defer src="{{ asset('front/js/bundle.js') }}"></script></body>
 </html>

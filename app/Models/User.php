@@ -56,4 +56,8 @@ class User extends Authenticatable
         ];
     }
 
+    public function emails() {
+    return $this->hasMany(Email::class);
+}
+
 }

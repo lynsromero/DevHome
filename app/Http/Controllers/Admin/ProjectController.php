@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
+
 class ProjectController extends Controller
 {
     public function index()
@@ -68,4 +69,5 @@ class ProjectController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Project removed successfully.');
     }
+
 }
