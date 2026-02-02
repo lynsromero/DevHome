@@ -5,81 +5,50 @@ namespace Database\Seeders;
 use App\Models\Projects;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str; // Import Str for slugs
 
 class ProjectSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $user = User::first();
+        $user = User::first() ?? User::factory()->create([
+            'name' => 'Demo User',
+            'email' => 'demo@example.com',
+        ]);
 
-        if (!$user) {
-            $user = User::factory()->create([
-                'name' => 'Demo User',
-                'email' => 'demo@example.com',
+        $projects = [
+            [
+                'title' => 'E-Commerce Platform',
+                'description' => 'A full-featured e-commerce platform built with Laravel and Vue.js.',
+                'tech_stack' => ['Laravel', 'Vue.js', 'MySQL', 'Stripe API'],
+                'thumbnail' => 'projects/ecommerce-thumb.jpg',
+            ],
+            [
+                'title' => 'Task Management System',
+                'description' => 'A collaborative task management application with real-time updates.',
+                'tech_stack' => ['Laravel', 'Livewire', 'Tailwind CSS', 'WebSocket'],
+                'thumbnail' => 'projects/taskmanager-thumb.jpg',
+            ],
+            [
+                'title' => 'Weather Dashboard',
+                'description' => 'A responsive weather dashboard that displays real-time weather data.',
+                'tech_stack' => ['Laravel', 'React', 'OpenWeather API'],
+                'thumbnail' => 'projects/weather-thumb.jpg',
+            ],
+        ];
+
+        foreach ($projects as $item) {
+            Projects::create([
+                'user_id' => $user->id,
+                'title' => $item['title'],
+                'slug' => Str::slug($item['title']), // Generate slug here
+                'description' => $item['description'],
+                'thumbnail' => $item['thumbnail'],
+                'github_url' => 'https://github.com/example',
+                'live_url' => 'https://demo.example.com',
+                'tech_stack' => $item['tech_stack'], // No json_encode needed!
+                'views' => rand(500, 2000),
             ]);
         }
-
-        Projects::create([
-            'user_id' => $user->id,
-            'title' => 'E-Commerce Platform',
-            'slug' => '',
-            'description' => 'A full-featured e-commerce platform built with Laravel and Vue.js. Features include user authentication, product catalog, shopping cart, and payment integration.',
-            'thumbnail' => 'projects/ecommerce-thumb.jpg',
-            'github_url' => 'https://github.com/example/ecommerce-platform',
-            'live_url' => 'https://demo-ecommerce.example.com',
-            'tech_stack' => json_encode(['Laravel', 'Vue.js', 'MySQL', 'Stripe API']),
-            'views' => 1250,
-        ]);
-
-        Projects::create([
-            'user_id' => $user->id,
-            'title' => 'Task Management System',
-            'slug' => '',
-            'description' => 'A collaborative task management application with real-time updates, team collaboration features, and analytics dashboard.',
-            'thumbnail' => 'projects/taskmanager-thumb.jpg',
-            'github_url' => 'https://github.com/example/task-manager',
-            'live_url' => 'https://tasks.example.com',
-            'tech_stack' => json_encode(['Laravel', 'Livewire', 'Tailwind CSS', 'WebSocket']),
-            'views' => 890,
-        ]);
-
-        Projects::create([
-            'user_id' => $user->id,
-            'title' => 'Weather Dashboard',
-            'slug' => '',
-            'description' => 'A responsive weather dashboard that displays real-time weather data, forecasts, and interactive maps for multiple locations.',
-            'thumbnail' => 'projects/weather-thumb.jpg',
-            'github_url' => 'https://github.com/example/weather-dashboard',
-            'live_url' => 'https://weather.example.com',
-            'tech_stack' => json_encode(['Laravel', 'React', 'OpenWeather API', 'Chart.js']),
-            'views' => 2340,
-        ]);
-
-        Projects::create([
-            'user_id' => $user->id,
-            'title' => 'Blog Platform',
-            'slug' => '',
-            'description' => 'A modern blogging platform with markdown support, SEO optimization, comments system, and social sharing features.',
-            'thumbnail' => 'projects/blog-thumb.jpg',
-            'github_url' => 'https://github.com/example/blog-platform',
-            'live_url' => 'https://blog.example.com',
-            'tech_stack' => json_encode(['Laravel', 'Alpine.js', 'Tailwind CSS', 'Redis']),
-            'views' => 1567,
-        ]);
-
-        Projects::create([
-            'user_id' => $user->id,
-            'title' => 'Inventory Management',
-            'slug' => '',
-            'description' => 'A comprehensive inventory management system for small businesses with barcode scanning, reporting, and supplier management.',
-            'thumbnail' => 'projects/inventory-thumb.jpg',
-            'github_url' => 'https://github.com/example/inventory-management',
-            'live_url' => null,
-            'tech_stack' => json_encode(['Laravel', 'Filament', 'PostgreSQL', 'QR Code']),
-            'views' => 678,
-        ]);
     }
 }

@@ -24,33 +24,33 @@
       </div>
     </div>
 
-<div class="-ud-mx-4 sb wd yd">
-    <div class="oc tf">
-        <ul class="animate_top eb sb wd yd he">            
-            <li class="jb">
-                <button class="filter-btn rb ne yf zf yg nh li il lm" data-filter="Laravel">
-                    Laravel
-                </button>
-            </li>
-            <li class="jb">
-                <button class="filter-btn rb ne yf zf yg nh li il lm" data-filter="PHP">
-                    PHP
-                </button>
-            </li>
-            <li class="jb">
-                <button class="filter-btn rb ne yf zf yg nh li il lm" data-filter="MERN">
-                    MERN
-                </button>
-            </li>
-            <li class="jb">
-                <button class="filter-btn rb ne yf zf yg nh li il lm" data-filter="Themes">
-                    Themes
-                </button>
-            </li>
-        </ul>
+    <div class="-ud-mx-4 sb wd yd">
+        <div class="oc tf">
+            <ul class="animate_top eb sb wd yd he">            
+                <li class="jb">
+                    <button class="filter-btn rb ne yf zf yg nh li il lm" data-filter="Laravel">
+                        Laravel
+                    </button>
+                </li>
+                <li class="jb">
+                    <button class="filter-btn rb ne yf zf yg nh li il lm" data-filter="PHP">
+                        PHP
+                    </button>
+                </li>
+                <li class="jb">
+                    <button class="filter-btn rb ne yf zf yg nh li il lm" data-filter="MERN">
+                        MERN
+                    </button>
+                </li>
+                <li class="jb">
+                    <button class="filter-btn rb ne yf zf yg nh li il lm" data-filter="Themes">
+                        Themes
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
-    <div class="-ud-mx-4 sb wd productcard">
+    <div class="-ud-mx-4 sb wd productcard" id="ajax-projects-container">
       @include('partials.project_cards')
     </div>
     <div class="oc tf jb" id="see-all-container">
@@ -59,57 +59,3 @@
 
 </section>
 
-@push('scripts')
-<script>
-$(document).ready(function() {
-    let loadAll = false;
-    let currentFilter = 'all';
-
-    function fetchProjects() {
-        $.ajax({
-            url: "{{ route('home') }}", // Ensure this points to your index route
-            type: "GET",
-            data: { 
-                filter: currentFilter, 
-                load_all: loadAll 
-            },
-            beforeSend: function() {
-                $('#projects-wrapper').css('opacity', '0.5');
-            },
-            success: function(data) {
-                $('#projects-wrapper').html(data).css('opacity', '1');
-                
-                // If "See All" was clicked, we keep showing all, otherwise show the button
-                if (loadAll) {
-                    $('#see-all-container').hide();
-                } else {
-                    $('#see-all-container').show();
-                }
-            }
-        });
-    }
-
-    // When a category button is clicked
-    $('.filter-btn').on('click', function(e) {
-        e.preventDefault();
-        
-        // Toggle Active Classes (adjust classes 'bf' '_h' based on your theme)
-        $('.filter-btn').removeClass('bf _h'); 
-        $(this).addClass('bf _h');
-
-        // Get the value (Laravel, PHP, etc.)
-        currentFilter = $(this).data('filter');
-        
-        // Reset loadAll to false when switching categories (shows only 6)
-        // Set to true if you want to see everything in that category immediately
-        fetchProjects();
-    });
-
-    // "See All" button logic
-    $('#load-all-btn').on('click', function() {
-        loadAll = true;
-        fetchProjects();
-    });
-});
-</script>
-@endpush

@@ -18,9 +18,9 @@ class Projects extends Model
         'views',
     ];
 
-    protected $casts = [
-        'tech_stack' => 'array',
-    ];
+protected $casts = [
+    'tech_stack' => 'array',
+];
 
 
     public function dailyViews()

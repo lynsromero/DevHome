@@ -29,9 +29,13 @@ public function index(Request $request)
     }
 
     // 3. Sorting & Fetching
+    if ($request->filled('filter') && $request->filter !== 'all') {
+    $projects = $query->latest()->get();
+} else {
     $projects = ($request->load_all == 'true') 
                 ? $query->latest()->get() 
                 : $query->latest()->take(6)->get();
+}
 
     // 4. AJAX Response
     if ($request->ajax()) {
