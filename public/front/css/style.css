@@ -2457,3 +2457,9 @@ body {
 .copy-btn:hover {
     color: #fff;
 }
+
+.project-button{
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+}
