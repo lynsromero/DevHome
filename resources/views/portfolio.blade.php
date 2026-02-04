@@ -1,4 +1,4 @@
-<section x-data="{
+<section id="projects" x-data="{
     currentFilter: new URLSearchParams(window.location.search).get('filter') || 'all',
     isLoading: false,
     isExpanded: false, // Track if we are showing all or just 6

@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\Route;
 
 
 // FrontEnd
-Route::get('/' , [HomeController::class, 'index'])->name('home');
-Route::get('/project/{slug}' , [HomeController::class, 'project'])->name('project.view');
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/' , 'index')->name('home');
+    Route::get('/project/{slug}' ,  'project')->name('project.view');
+    Route::POST('/contact-us' , 'submit')->name('contact.submit');
+
+});
 
 
 

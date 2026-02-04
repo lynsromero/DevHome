@@ -2,48 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
+use App\Models\Contact;
 use App\Models\Projects;
 use App\Models\User;
+use App\Models\Website_settings;
 use Illuminate\Http\Request;
 use App\Models\ProjectView;
 use Illuminate\Support\Carbon;
+use App\Services\ProjectService;
 
 class HomeController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, ProjectService $projectService)
     {
+        $projects = $projectService->getFilteredProjects($request);
         $teams = User::all();
-        $query = Projects::query();
+        $settings = Website_settings::first();
 
-        // 1. Capture the filter
-        $filter = $request->get('filter');
-
-
-        // 2. Apply Filtering (Force Case-Insensitivity)
-        if ($request->has('filter') && $filter !== 'all') {
-            $filter = strtolower(trim($filter)); 
-
-            $query->where(function ($q) use ($filter) {
-                
-                $q->whereRaw('LOWER(tech_stack) LIKE ?', ['%' . $filter . '%']);
-            });
-        }
-
-        // 3. Sorting & Fetching
-        if ($request->filled('filter') && $request->filter !== 'all') {
-            $projects = $query->latest()->get();
-        } else {
-            $projects = ($request->load_all == 'true')
-                ? $query->latest()->get()
-                : $query->latest()->take(6)->get();
-        }
-
-        // 4. AJAX Response
         if ($request->ajax()) {
             return view('partials.project_cards', compact('projects'))->render();
         }
 
-        return view('index', compact('projects', 'teams'));
+        return view('index', compact('projects', 'teams' , 'settings'));
     }
 
 
@@ -69,5 +50,16 @@ class HomeController extends Controller
         $user = User::where('id', $projects->user_id)->firstOrFail();
 
         return view('project', compact('projects', 'user'));
+    }
+
+    public function submit(ContactRequest $request)
+    {
+        Contact::create($request->validated());
+
+
+        return response()->json([
+            'success' => true,
+            'message' => "We've Received Your SMS, Thank You"
+        ]);
     }
 }

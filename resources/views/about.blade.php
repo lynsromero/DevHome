@@ -47,18 +47,18 @@
       <div class="animate_right oc tf dm/2 2xl:ud-w-5/12">
         <div class="rj vl">
           <span class="yh ta qb ah nh">
-            WHAT WE ACHIEVED
+            WHAT WE BUILD
           </span>
           <h2 class="ua bh lh sh zh mj lk vk ll zm cn vn">
             We grow your business with full potential by the innovation.
           </h2>
-          <h3 class="va ah lh zh mj">Company Benefits</h3>
+          <h3 class="va ah lh zh mj">Why Dev Home</h3>
           <p class="wa">
             Proin gravida nibh vel velit auctor aliquet. aks Aenean
             sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,
             nec sagittis sem, tidiomic consequat ipsum.
           </p>
-          <h3 class="va ah lh zh mj">Competitive Salary</h3>
+          <h3 class="va ah lh zh mj">How We Work</h3>
           <p>
             Proin gravida nibh vel velit auctor aliquet. aks Aenean
             sollicitudin, lorem quis bibendum auctor.
