@@ -567,7 +567,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 <div align="center">
 
-**Made with ❤️ by [lyn sromero](https://github.com/lynsromero)**
+**Made with ❤️ by [Lyns Romero](https://github.com/lynsromero)**
 
 Special thanks to all contributors who help make this project better!
 
@@ -579,8 +579,7 @@ Special thanks to all contributors who help make this project better!
 
 ## 📞 Support
 
-- 📧 **Email**: [your-email@example.com]
-- 💬 **Discord**: [Join our community]
+- 📧 **Email**: [sakibramim4@gmail.com]
 - 🐛 **Issues**: [GitHub Issues](https://github.com/lynsromero/DevHome/issues)
 - 📖 **Documentation**: [Wiki](https://github.com/lynsromero/DevHome/wiki)
 
