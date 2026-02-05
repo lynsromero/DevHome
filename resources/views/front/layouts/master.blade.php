@@ -26,7 +26,7 @@
 
   <!-- ===== Header Start ===== -->
 
-  @include('header')
+  @include('front.layouts.header')
 
   <!-- ===== Header End ===== -->
 
@@ -35,12 +35,12 @@
     @yield('content')
 
     <!-- ====== Contact Section Start -->
-    @include('contact')
+    @include('front.layouts.contact')
     <!-- ====== Contact Section End -->
 
   </main>
   <!-- ===== Footer Start ===== -->
-  @include('footer')
+  @include('front.layouts.footer')
   <!-- ====== Footer Section Start -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   @stack('scripts')

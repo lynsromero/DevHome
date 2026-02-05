@@ -303,3 +303,12 @@
     object-fit: cover; /* This prevents the "squashing" effect */
     object-position: center; /* Keeps the face in the middle */
 }
+
+.add-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.newwidth{
+    width: 50%;
+}

@@ -76,7 +76,7 @@
     </div>
 
     <div class="-ud-mx-4 sb wd productcard" id="ajax-projects-container" style="transition: opacity 0.3s ease;">
-        @include('partials.project_cards')
+        @include('front.partials.project_cards')
     </div>
 
     <div class="project-button oc tf jb" style="margin-top: 40px; text-align: center;">

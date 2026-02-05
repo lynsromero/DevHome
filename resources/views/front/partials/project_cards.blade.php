@@ -20,7 +20,7 @@
     </div>
   </div>
   @empty
-  <div class="oc tf w-full text-center py-10">
+  <div class="oc tf w-full text-center py-10 center-text">
         <h4 class="zh mj va dh lh">No projects found for this technology.</h4>
         <p>Try selecting a different filter.</p>
     </div>

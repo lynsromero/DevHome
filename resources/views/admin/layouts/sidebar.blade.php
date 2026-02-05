@@ -45,9 +45,11 @@
                 </div>
             </div>
 
-            <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Website Settings</a>
-            <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>E-mails</a>
-            <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Dev List</a>
+            <a href="{{ route('website.settings') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Website Settings</a>
+            <a href="{{ route('email.list') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>E-mails</a>
+            <a href="{{ route('website.contacts') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Website Contacts</a>
+            <a href="{{ route('dev.list') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Dev List</a>
+            <a href="{{ route('todo') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>To Do List</a>
         </div>
     </nav>
 </div>

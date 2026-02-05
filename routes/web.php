@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DevController;
+use App\Http\Controllers\Admin\EmailController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TodoController;
+use App\Http\Controllers\Admin\WebsiteSettingsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -51,7 +55,25 @@ Route::middleware('auth')->group(function(){
     Route::post('/store-project' , [ProjectController::class, 'store'])->name('store.project');
 
     Route::get('/project-list' , [ProjectController::class, 'list'])->name('list.project');
+
     Route::post('/project-delete/{slug}' , [ProjectController::class, 'destroy'])->name('projects.destroy');
     
+    Route::get('/website-settings' , [WebsiteSettingsController::class, 'index'])->name('website.settings');
+    Route::post('/website/update' , [WebsiteSettingsController::class, 'update'])->name('website.update');
+
+    Route::get('/email-list' , [EmailController::class, 'index'])->name('email.list');
+
+    Route::get('/website-contacts' , [AdminController::class, 'contacts'])->name('website.contacts');
+
+    Route::get('/add-dev' , [DevController::class, 'addDevView'])->name('add.dev');
+    Route::post('/add-dev' , [DevController::class, 'addDev'])->name('add.dev.post');
+
+    Route::get('/dev-list' , [DevController::class, 'index'])->name('dev.list');
+    Route::get('/remove-dev/{id}' , [DevController::class, 'remove'])->name('remove.dev');
+    Route::post('/remove-dev-ajax/{id}' , [DevController::class, 'removeAjax'])->name('remove.dev.ajax');
+
+    Route::get('/todo' , [TodoController::class, 'index'])->name('todo');
+    Route::post('/todo/store' , [TodoController::class, 'store'])->name('todo.store');
+    Route::delete('/todo/delete/{id}', [TodoController::class, 'destroy'])->name('todo.delete');
 
     });

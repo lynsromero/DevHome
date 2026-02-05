@@ -21,10 +21,10 @@ class HomeController extends Controller
         $settings = Website_settings::first();
 
         if ($request->ajax()) {
-            return view('partials.project_cards', compact('projects'))->render();
+            return view('front.partials.project_cards', compact('projects'))->render();
         }
 
-        return view('index', compact('projects', 'teams' , 'settings'));
+        return view('front.layouts.home.index', compact('projects', 'teams' , 'settings'));
     }
 
 
@@ -49,7 +49,7 @@ class HomeController extends Controller
 
         $user = User::where('id', $projects->user_id)->firstOrFail();
 
-        return view('project', compact('projects', 'user'));
+        return view('front.layouts.home.project', compact('projects', 'user'));
     }
 
     public function submit(ContactRequest $request)

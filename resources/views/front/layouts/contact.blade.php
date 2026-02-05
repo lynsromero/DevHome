@@ -49,7 +49,7 @@ submitForm(e) {
     .finally(() => this.loading = false);
   }
 }">
-            @include('partials.messages')
+            @include('front.partials.messages')
 
             <form action="{{ route('contact.submit') }}" @submit.prevent="submitForm($event)">
               @csrf

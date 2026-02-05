@@ -1,11 +1,11 @@
-@extends('master')
+@extends('front.layouts.master')
 @section('content')
 <!-- ===== Hero Section Start ===== -->
-      @include('hero')
+      @include('front.layouts.home.hero')
       <!-- ===== Hero Section End ===== -->
     
       <!-- ===== About Section Start ===== -->
-      @include('about')
+      @include('front.layouts.home.about')
       <!-- ===== About Section End ===== -->
 
       <!-- ====== Stats Section Start -->
@@ -13,10 +13,10 @@
       <!-- ====== Stats Section End -->
 
       <!-- ====== Portfolio Section Start -->
-      @include('portfolio' )
+      @include('front.layouts.home.portfolio')
       <!-- ====== Portfolio Section End -->
       <!-- ====== Team Section Start -->
-      @include('team')
+      @include('front.layouts.home.team')
       <!-- ====== Team Section End -->
 @endsection
 
