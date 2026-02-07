@@ -33,7 +33,7 @@
 ## 🌟 Features
 
 ### 👥 Public-Facing Features
-- **🎨 Modern Portfolio Display** - Responsive showcase of developer projects
+- **🎨 Modern Portfolio Display** - Responsive showcase of developer projects with organized layouts
 - **🔍 Advanced Project Filtering** - Filter projects by technology stack (Laravel, PHP, MERN, Themes)
 - **📱 Mobile-First Design** - Fully responsive with dark mode support
 - **⚡ AJAX-Powered Navigation** - Dynamic loading with smooth transitions
@@ -41,15 +41,20 @@
 - **📧 Contact Form** - Professional contact system with validation
 - **👥 Team Display** - Showcase team members and their profiles
 - **🔗 SEO-Friendly URLs** - Clean URLs with slugs and meta tags
+- **🗂️ Organized View Structure** - Modular frontend layouts for better maintainability
 
 ### 🛡️ Admin Panel Features
-- **🔐 Secure Authentication** - Protected admin dashboard
-- **📊 Analytics Dashboard** - Real-time statistics and metrics
+- **🔐 Secure Authentication** - Protected admin dashboard with role-based access
+- **📊 Enhanced Analytics Dashboard** - Real-time statistics with modular components
 - **📁 Project Management** - Full CRUD operations for projects
 - **👤 Profile Management** - Update personal information and social links
 - **📸 Image Uploads** - Handle project thumbnails and profile images
 - **📧 Email Tracking** - Monitor and manage contact submissions
 - **⚙️ Settings Management** - Dynamic website configuration
+- **👥 Developer Management** - Add and manage developer profiles
+- **📝 Todo System** - Task management with date/time tracking
+- **📞 Contact Management** - View and manage website contacts
+- **🔧 Dashboard Service** - Modular service-based architecture
 
 ---
 
@@ -91,11 +96,15 @@ DevHome/
 │   │   ├── 📂 Controllers/
 │   │   │   ├── 📂 Admin/
 │   │   │   │   ├── 📄 AdminController.php
+│   │   │   │   ├── 📄 DevController.php
+│   │   │   │   ├── 📄 EmailController.php
 │   │   │   │   ├── 📄 ProfileController.php
-│   │   │   │   └── 📄 ProjectController.php
-│   │   │   ├── 📄 HomeController.php
-│   │   │   └── 📄 TeamController.php
+│   │   │   │   ├── 📄 ProjectController.php
+│   │   │   │   ├── 📄 TodoController.php
+│   │   │   │   └── 📄 WebsiteSettingsController.php
+│   │   │   └── 📄 HomeController.php
 │   │   └── 📂 Requests/
+│   │       ├── 📄 AddDevRequest.php
 │   │       ├── 📄 ContactRequest.php
 │   │       └── 📄 WebsiteSettingsRequest.php
 │   ├── 📂 Models/
@@ -104,8 +113,10 @@ DevHome/
 │   │   ├── 📄 ProjectView.php
 │   │   ├── 📄 Contact.php
 │   │   ├── 📄 Email.php
+│   │   ├── 📄 Todo.php
 │   │   └── 📄 Website_settings.php
 │   └── 📂 Services/
+│       ├── 📄 DashboardService.php
 │       └── 📄 ProjectService.php
 ├── 📂 config/
 ├── 📂 database/
@@ -119,14 +130,24 @@ DevHome/
 ├── 📂 resources/
 │   ├── 📂 views/
 │   │   ├── 📂 admin/
-│   │   ├── 📂 partials/
-│   │   ├── 📄 about.blade.php
-│   │   ├── 📄 contact.blade.php
-│   │   ├── 📄 footer.blade.php
-│   │   ├── 📄 header.blade.php
-│   │   ├── 📄 hero.blade.php
-│   │   ├── 📄 master.blade.php
-│   │   └── 📄 portfolio.blade.php
+│   │   │   ├── 📂 dashboard/
+│   │   │   ├── 📂 layouts/
+│   │   │   ├── 📄 add-dev.blade.php
+│   │   │   ├── 📄 contacts.blade.php
+│   │   │   ├── 📄 dashboard.blade.php
+│   │   │   ├── 📄 dev_list.blade.php
+│   │   │   ├── 📄 email_list.blade.php
+│   │   │   ├── 📄 todo.blade.php
+│   │   │   └── 📄 website_settings.blade.php
+│   │   ├── 📂 front/
+│   │   │   ├── 📂 layouts/
+│   │   │   │   ├── 📂 home/
+│   │   │   │   ├── 📄 contact.blade.php
+│   │   │   │   ├── 📄 footer.blade.php
+│   │   │   │   ├── 📄 header.blade.php
+│   │   │   │   └── 📄 master.blade.php
+│   │   │   └── 📂 partials/
+│   │   └── 📄 master.blade.php
 │   ├── 📄 css/app.css
 │   └── 📄 js/app.js
 ├── 📂 routes/
@@ -177,6 +198,12 @@ footer_des, hero_svg1-4 (longText), timestamps
 ```sql
 id, user_id (FK), email_address, subject, body, 
 created_at, updated_at
+```
+
+#### `todos` (Task Management)
+```sql
+id, task, task_time, user_id (FK), completed, 
+created_at, updated_at, deleted_at
 ```
 
 ### Laravel System Tables
@@ -409,6 +436,15 @@ npm run dev -- --watch
 | POST | `/store-project` | Save project |
 | GET | `/project-list` | List projects |
 | POST | `/project-delete/{slug}` | Delete project |
+| GET | `/website-settings` | Website configuration |
+| POST | `/website-settings-update` | Update settings |
+| GET | `/email-list` | View contact emails |
+| GET | `/dev-list` | Manage developers |
+| GET | `/add-dev` | Add developer form |
+| POST | `/add-dev-store` | Save developer |
+| GET | `/todo` | Task management |
+| POST | `/todo-store` | Create task |
+| GET | `/website-contacts` | View website contacts |
 
 ### 🔄 AJAX Endpoints
 
@@ -541,12 +577,19 @@ git push origin feature/amazing-feature
 - ✅ Contact form system
 - ✅ Analytics and view tracking
 - ✅ Dynamic settings management
+- ✅ Developer management system
+- ✅ Todo task management
+- ✅ Modular dashboard components
+- ✅ Organized frontend layout structure
+- ✅ Enhanced role-based access control
+- ✅ Service-based architecture
 
 ### 🚧 In Progress
 - 🔄 Enhanced analytics dashboard
 - 🔄 Project categories and tags
 - 🔄 Multi-language support
 - 🔄 Email notifications
+- 🔄 Advanced todo features
 
 ### 📋 Planned Features
 - 📋 Project commenting system
@@ -554,6 +597,7 @@ git push origin feature/amazing-feature
 - 📋 Advanced search functionality
 - 📋 API for external integrations
 - 📋 Mobile app companion
+- 📋 Real-time notifications
 
 ---
 

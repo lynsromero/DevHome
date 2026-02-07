@@ -45,7 +45,7 @@ public function update(WebsiteSettingsRequest $request)
             $file = $request->file($field);
             $fileName = $field . '_' . time() . '.' . $file->getClientOriginalExtension();
             $path =$file->store('web-settings', 'public');
-            $fileName = 'storage/' . $path;
+            $fileName =  $path;
             
             // Add path to the data array
             $data[$field] = $fileName;

@@ -13,7 +13,7 @@
           @endif
         </span>
         <h3 class="zh mj va dh lh">{{ $project->title }}</h3>
-        <a href="#" class="vi ui rb oe ve rf gg fh nh li aj">
+        <a href="{{ route('project.view' , $project->slug) }}" class="vi ui rb oe ve rf gg fh nh li aj">
           View Details
         </a>
       </div>

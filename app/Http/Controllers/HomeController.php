@@ -32,6 +32,7 @@ class HomeController extends Controller
     {
         $projects = Projects::where('slug', $slug)->firstOrFail();
         $ip = $request->ip();
+        $settings = Website_settings::first();
 
         $alreadyViewed = ProjectView::where('projects_id', $projects->id)
             ->where('ip_address', $ip)
@@ -49,7 +50,7 @@ class HomeController extends Controller
 
         $user = User::where('id', $projects->user_id)->firstOrFail();
 
-        return view('front.layouts.home.project', compact('projects', 'user'));
+        return view('front.layouts.home.project', compact('projects', 'user', 'settings'));
     }
 
     public function submit(ContactRequest $request)

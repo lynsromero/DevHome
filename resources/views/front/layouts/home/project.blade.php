@@ -1,4 +1,4 @@
-@extends('master')
+@extends('front.layouts.master')
 
 @section('content')
   <section class="ng um pn og vm qn">
