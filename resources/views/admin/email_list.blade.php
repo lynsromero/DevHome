@@ -7,8 +7,8 @@
         <thead>
         <tr>
           <th scope="col">No.</th>
+          <th scope="col">Name</th>
           <th scope="col">Email Address</th>
-          <th scope="col">Subject</th>
           <th scope="col">Message</th>
           <th scope="col">Date</th>
         </tr>
@@ -17,9 +17,9 @@
         @foreach ($emails as $email)
         <tr>
           <th scope="row">{{ $loop->iteration }}</th>
-          <td>{{ $email->email_address }}</td>
-          <td>{{ $email->subject }}</td>
-          <td>{{ $email->body }}</td>
+          <td>{{ $email->first_name }} {{ $email->last_name }}</td>
+          <td>{{ $email->email }}</td>
+          <td>{{ $email->message }}</td>
           <td>{{ $email->created_at->diffForHumans() }}</td>      
         </tr>
         @endforeach      

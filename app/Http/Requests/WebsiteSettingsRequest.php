@@ -35,6 +35,7 @@ class WebsiteSettingsRequest extends FormRequest
             'hero_svg2' => 'nullable|string',
             'hero_svg3' => 'nullable|string',
             'hero_svg4' => 'nullable|string',
+            'fav_icon' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ];
     }
 }

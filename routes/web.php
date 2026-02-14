@@ -17,6 +17,8 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/' , 'index')->name('home');
     Route::get('/project/{slug}' ,  'project')->name('project.view');
     Route::POST('/contact-us' , 'submit')->name('contact.submit');
+    Route::POST('/contact-me' ,  'contactMe')->name('email.submit');
+    Route::post('/project-image-upload',  'uploadEditorImage')->name('project.image.upload');
 
 });
 

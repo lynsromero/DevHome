@@ -102,7 +102,9 @@
     </div>
 </div>
 
-
+<!-- ====== Contact Section Start -->
+    @include('front.layouts.home.project-contact')
+<!-- ====== Contact Section End -->
 
 @endsection
 

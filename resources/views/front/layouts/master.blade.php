@@ -34,9 +34,7 @@
 
     @yield('content')
 
-    <!-- ====== Contact Section Start -->
-    @include('front.layouts.contact')
-    <!-- ====== Contact Section End -->
+    
 
   </main>
   <!-- ===== Footer Start ===== -->

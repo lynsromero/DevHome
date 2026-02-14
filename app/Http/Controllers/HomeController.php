@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
+use App\Http\Requests\ProjectContactRequest;
 use App\Models\Contact;
+use App\Models\Email;
 use App\Models\Projects;
 use App\Models\User;
 use App\Models\Website_settings;
@@ -55,6 +57,7 @@ class HomeController extends Controller
 
     public function submit(ContactRequest $request)
     {
+
         Contact::create($request->validated());
 
 
@@ -63,4 +66,40 @@ class HomeController extends Controller
             'message' => "We've Received Your SMS, Thank You"
         ]);
     }
+    public function contactMe(ProjectContactRequest $request)
+    {
+        $project = Projects::findOrFail($request->project_id);
+        Email::create(array_merge($request->validated(), [
+        'user_id' => $project->user_id
+    ]));
+
+
+        return response()->json([
+            'success' => true,
+            'message' => "I've Received Your SMS, Thank You"
+        ]);
+    }
+
+    public function uploadEditorImage(Request $request)
+{
+    if ($request->hasFile('upload')) {
+        $file = $request->file('upload');
+        
+        // 1. Generate a unique name
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        
+        // 2. Store the image in storage/app/public/project-images
+        // 'public' disk refers to the storage/app/public folder
+        $path = $file->storeAs('project-images', $fileName, 'public');
+
+        // 3. Generate the public URL
+        $url = asset('storage/' . $path);
+
+        return response()->json([
+            'fileName' => $fileName,
+            'uploaded' => 1,
+            'url' => $url
+        ]);
+    }
+}
 }

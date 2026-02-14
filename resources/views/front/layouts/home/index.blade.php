@@ -18,6 +18,10 @@
       <!-- ====== Team Section Start -->
       @include('front.layouts.home.team')
       <!-- ====== Team Section End -->
+
+      <!-- ====== Contact Section Start -->    
+      @include('front.layouts.contact')
+    <!-- ====== Contact Section End -->
 @endsection
 
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}

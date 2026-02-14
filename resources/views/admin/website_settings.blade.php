@@ -6,6 +6,10 @@
       <form action="{{ route('website.update') }}" method="POST" enctype="multipart/form-data">
     @csrf
       <div class="mb-3">
+        <label for="formFileMultiple" class="form-label">Fav Icon</label>
+        <input class="form-control form-control-sm bg-dark" name="fav_icon" id="formFileSm" type="file">
+      </div>
+      <div class="mb-3">
         <label for="formFileMultiple" class="form-label">Logo For Light Theme</label>
         <input class="form-control form-control-sm bg-dark" name="logo" id="formFileSm" type="file">
       </div>

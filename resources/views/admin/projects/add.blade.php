@@ -13,15 +13,13 @@
         <div class="mb-3">
           <label class="form-label">Slug</label>
           <div class="input-group">
-
             <input type="text" name="slug" id="project_slug" class="form-control">
           </div>
-          <small class="text-muted">You can leave this as generated or type your own.</small>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Description</label>
-          <textarea name="description" class="form-control" style="height: 150px;" required></textarea>
+          <textarea name="description" class="form-control" id="editor" style="height: 150px;"></textarea>
         </div>
 
         <div class="mb-3">
@@ -52,8 +50,37 @@
   </div>
 @endsection
 
+
+
 @push('script')
   <script>
+    import $ from 'jquery';
+
+    import { ClassicEditor, Essentials, Bold, Italic, Font, Paragraph } from 'ckeditor5';
+
+    import 'ckeditor5/ckeditor5.css';
+
+    $(document).ready(() => {
+      ClassicEditor
+        .create($('#editor')[0], {
+          licenseKey: '<YOUR_LICENSE_KEY>', // Or 'GPL'.
+          plugins: [Essentials, Bold, Italic, Font, Paragraph],
+          toolbar: [
+            'undo', 'redo', '|', 'bold', 'italic', '|',
+            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+          ]
+        })
+        .then(editor => {
+          // Editor initialized successfully.
+          console.log('CKEditor 5 initialized with jQuery!');
+        })
+        .catch(error => {
+          console.error('Error initializing CKEditor 5:', error);
+        });
+    });
+
+
+    // Slug logic
     document.getElementById('project_title').addEventListener('input', function () {
       let title = this.value;
       let slug = title.toLowerCase()
@@ -63,5 +90,4 @@
       document.getElementById('project_slug').value = slug;
     });
   </script>
-
 @endpush

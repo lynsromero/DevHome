@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('email_address');
-            $table->string('subject');
-            $table->text('body');
-            $table->timestamps();   
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
+            $table->text('message');
+            $table->integer('phone_number')->nullable();
+            $table->timestamps();
         });
     }
 

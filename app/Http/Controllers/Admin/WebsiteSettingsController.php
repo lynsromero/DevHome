@@ -32,7 +32,7 @@ public function update(WebsiteSettingsRequest $request)
     $settings = Website_settings::first() ?? new Website_settings();
 
     // 3. Handle Image Uploads (about_us_img1, about_us_img2, etc.)
-    $imageFields = ['about_us_img1', 'about_us_img2', 'logo', 'logo_dark'];
+    $imageFields = ['about_us_img1', 'about_us_img2', 'logo', 'logo_dark', 'fav_icon'];
 
     foreach ($imageFields as $field) {
         if ($request->hasFile($field)) {
