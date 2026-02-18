@@ -68,10 +68,10 @@ body {
     line-height: inherit; /* 2 */
 }
 
-html, body {
+html,
+body {
     overflow-x: hidden;
 }
-
 
 /*
 1. Add the correct height in Firefox.
@@ -2399,20 +2399,15 @@ body {
     height: 400px;
 }
 
-
-.productcard{
- 
+.productcard {
     padding: 30px 60px 30px 60px;
-    
-
 }
-.productimg{ 
+.productimg {
     height: 245px;
     width: 370px;
-
 }
 
-.newpad{
+.newpad {
     margin-bottom: 8px;
 }
 
@@ -2429,7 +2424,7 @@ body {
     padding: 8px 15px;
     color: #ccc;
     font-size: 0.85rem;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
 }
 
 .code-body {
@@ -2442,7 +2437,7 @@ body {
 
 .code-body code {
     color: #e6e6e6;
-    font-family: 'Consolas', 'Monaco', monospace;
+    font-family: "Consolas", "Monaco", monospace;
     font-size: 1rem;
 }
 
@@ -2458,20 +2453,122 @@ body {
     color: #fff;
 }
 
-.project-button{
+.project-button {
     text-align: center;
     flex-direction: row;
     justify-content: center;
 }
 
-.new-nav{
+.new-nav {
     padding-left: 85px;
 }
 
-.alignitms{
+.alignitms {
     justify-content: center;
 }
 
-.center-text{
+.center-text {
     text-align: center;
+}
+.card-container {
+    display: flex;
+    justify-content: center; /* Horizontally centers */
+    align-items: center;     /* Vertically centers */
+    
+}
+
+/* Your existing profile-card styles */
+.profile-card {
+    width: 100%;
+    max-width: 50%; /* Optional: prevents the card from becoming too wide */
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.profile-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Body Layout */
+.profile-body {
+    display: flex;
+    justify-content: space-between; /* Pushes stacks to the right */
+    align-items: flex-start;        /* Aligns items to the top */
+    margin-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+.profile-main-content {
+    display: flex;
+    align-items: center;
+}
+.profile-stacks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: right; /* Aligns text to the right side */
+}
+.stack-item {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-top: 0.25rem;
+}
+@media (prefers-color-scheme: dark) {
+    .stack-label { color: #9ca3af; }
+    .stack-item { color: #e5e7eb; }
+}
+.profile-avatar {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 0.5rem;
+    margin-inline-end: 1rem;
+}
+
+.profile-info {
+    width: 100%;
+}
+
+.profile-info > * + * {
+    margin-top: 0.5rem;
+}
+
+/* Text Styles */
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.profile-role {
+    font-size: 1.25rem;
+    color: #6b7280;
+}
+
+/* PRO Badge */
+.badge-pro {
+    display: inline-block;
+    padding: 0.125rem 0.625rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: #dbeafe;
+    color: #1e40af;
+    margin-inline-end: 0.5rem;
+}
+
+/* --- Dark Mode Support --- */
+@media (prefers-color-scheme: dark) {
+    .profile-card { background-color: #1f2937; }
+    .profile-title, .profile-name { color: #ffffff; }
+    .profile-body { border-color: #374151; }
+    .profile-role { color: #9ca3af; }
+    .badge-pro { background-color: #1e3a8a; color: #93c5fd; }
 }

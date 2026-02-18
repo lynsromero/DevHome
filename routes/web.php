@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DevController;
 use App\Http\Controllers\Admin\EmailController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TodoController;
 use App\Http\Controllers\Admin\WebsiteSettingsController;
@@ -22,6 +23,7 @@ Route::controller(HomeController::class)->group(function(){
 
 });
 
+Route::get('/team' , [TeamController::class, 'index'])->name('team');
 
 
 

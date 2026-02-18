@@ -20,34 +20,40 @@
     showSuccess: false, 
     successMsg: '',
     loading: false,
-submitForm(e) {
-    this.loading = true;
-    const form = e.target;
-    
-    fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Accept': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-        }
-    })
-    .then(async res => {
-        const data = await res.json();
+    errors: {}, // New: Stores field-specific errors
+    submitForm(e) {
+        this.loading = true;
+        this.errors = {}; // Reset errors on new attempt
+        const form = e.target;
         
-        if (res.ok) {
-            this.successMsg = data.message;
-            this.showSuccess = true;
-            form.reset(); // This clears the inputs
-            setTimeout(() => this.showSuccess = false, 5000);
-        } else {            
-          alert(data.message || 'Check your inputs');
-        }
-    })
-    .catch(err => console.error('Fetch Error:', err))
-    .finally(() => this.loading = false);
-  }
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+            }
+        })
+        .then(async res => {
+            const data = await res.json();
+            
+            if (res.ok) {
+                this.successMsg = data.message;
+                this.showSuccess = true;
+                form.reset();
+                setTimeout(() => this.showSuccess = false, 5000);
+            } else if (res.status === 422) {
+                // Laravel validation errors are stored in data.errors
+                this.errors = data.errors;
+            } else {            
+                // Fallback for general system errors
+                alert(data.message || 'Something went wrong');
+            }
+        })
+        .catch(err => console.error('Fetch Error:', err))
+        .finally(() => this.loading = false);
+    }
 }">
             @include('front.partials.messages')
 
@@ -58,28 +64,55 @@ submitForm(e) {
                   <div class="kb">
                     <label for="firstName" class="zh mj pa qb mh">First Name</label>
                     <input id="firstName" type="text" name="first_name" required placeholder="Enter your first name"
-                      class="oe ve ye gj cj oj fi oc df cg dg di ki">
+                      class="oe ve ye gj cj oj fi oc df cg dg di ki :class=" errors.first_name ? 'border-red-500'
+                      : ''"">
+                    <template x-if="errors.first_name">
+                      <div class="text-red-500 text-sm mt-1" x-text="errors.first_name[0]"></div>
+                    </template>
+                    @error('first_name')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                 </div>
                 <div class="oc tf bl/2">
                   <div class="kb">
                     <label for="lastName" class="zh mj pa qb mh">Last Name</label>
                     <input id="lastName" type="text" name="last_name" required placeholder="Enter your last Name"
-                      class="oe ve ye gj cj oj fi oc df cg dg di ki">
+                      class="oe ve ye gj cj oj fi oc df cg dg di ki :class=" errors.phone_number ? 'border-red-500'
+                      : ''"">
+                    <template x-if="errors.last_name">
+                      <div class="text-red-500 text-sm mt-1" x-text="errors.last_name[0]"></div>
+                    </template>
+                    @error('last_name')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                 </div>
                 <div class="oc tf bl/2">
                   <div class="kb">
                     <label for="email" class="zh mj pa qb mh">Email</label>
                     <input id="email" type="email" name="email" required placeholder="Enter your Email"
-                      class="oe ve ye gj cj oj fi oc df cg dg di ki">
+                      class="oe ve ye gj cj oj fi oc df cg dg di ki :class=" errors.email ? 'border-red-500' : ''"">
+                    <template x-if="errors.email">
+                      <div class="text-red-500 text-sm mt-1" x-text="errors.email[0]"></div>
+                    </template>
+                    @error('email')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                 </div>
                 <div class="oc tf bl/2">
                   <div class="kb">
                     <label for="number" class="zh mj pa qb mh">Phone number</label>
                     <input id="number" type="text" name="phone_number" placeholder="Enter your number"
-                      class="oe ve ye gj cj oj fi oc df cg dg di ki">
+                      class="oe ve ye gj cj oj fi oc df cg dg di ki :class=" errors.phone_number ? 'border-red-500'
+                      : ''"">
+                    <template x-if="errors.phone_number">
+                      <div class="text-red-500 text-sm mt-1" x-text="errors.phone_number[0]"></div>
+                    </template>
+                    @error('phone_number')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                 </div>
                 <div class="oc tf">

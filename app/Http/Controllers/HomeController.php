@@ -12,22 +12,25 @@ use App\Models\Website_settings;
 use Illuminate\Http\Request;
 use App\Models\ProjectView;
 use Illuminate\Support\Carbon;
-use App\Services\ProjectService;
+use App\Services\HomeService;
 
 class HomeController extends Controller
 {
-    public function index(Request $request, ProjectService $projectService)
-    {
-        $projects = $projectService->getFilteredProjects($request);
-        $teams = User::all();
-        $settings = Website_settings::first();
+public function index(Request $request, HomeService $homeService)
+{
+    
+    $data = $homeService->getHomeData($request);
 
-        if ($request->ajax()) {
-            return view('front.partials.project_cards', compact('projects'))->render();
-        }
-
-        return view('front.layouts.home.index', compact('projects', 'teams' , 'settings'));
+    
+    if ($request->ajax()) {
+        return view('front.partials.project_cards', [
+            'projects' => $data['projects']
+        ])->render();
     }
+
+    
+    return view('front.layouts.home.index', $data);
+}
 
 
     public function project(Request $request, $slug)

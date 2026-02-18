@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('github_url')->nullable()->after('linkedin_url');
             $table->string('experience')->nullable()->after('github_url');
             $table->string('languages')->nullable()->after('experience');
+            $table->string('slug')->nullable()->after('designation');
         });
     }
 

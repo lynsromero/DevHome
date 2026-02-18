@@ -7,6 +7,7 @@ use App\Http\Requests\AddDevRequest;
 use App\Models\User;
 use App\Services\DashboardService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class DevController extends Controller
 {
@@ -102,6 +103,12 @@ class DevController extends Controller
         $dev->email = $request->email;
         $dev->image = $imageName;
         $dev->designation = $request->designation;
+        if (empty($request->slug)) {
+            $dev->slug = Str::slug($request->title);
+        } else {
+
+            $dev->slug = Str::slug($request->slug);
+        }
         $dev->facebook_url = $request->facebook_url;
         $dev->linkedin_url = $request->linkedin_url;
         $dev->github_url = $request->github_url;

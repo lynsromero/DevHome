@@ -53,34 +53,6 @@
 
 
 @push('script')
-  <script>
-    import $ from 'jquery';
-
-    import { ClassicEditor, Essentials, Bold, Italic, Font, Paragraph } from 'ckeditor5';
-
-    import 'ckeditor5/ckeditor5.css';
-
-    $(document).ready(() => {
-      ClassicEditor
-        .create($('#editor')[0], {
-          licenseKey: '<YOUR_LICENSE_KEY>', // Or 'GPL'.
-          plugins: [Essentials, Bold, Italic, Font, Paragraph],
-          toolbar: [
-            'undo', 'redo', '|', 'bold', 'italic', '|',
-            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
-          ]
-        })
-        .then(editor => {
-          // Editor initialized successfully.
-          console.log('CKEditor 5 initialized with jQuery!');
-        })
-        .catch(error => {
-          console.error('Error initializing CKEditor 5:', error);
-        });
-    });
-
-
-    // Slug logic
     document.getElementById('project_title').addEventListener('input', function () {
       let title = this.value;
       let slug = title.toLowerCase()

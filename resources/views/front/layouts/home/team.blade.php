@@ -26,8 +26,7 @@
                   <img src="{{ asset($member->image) }}" alt="image" class="oc" />
                 </div>
                 <div class="yg">
-                  <h4 class="zh mj ta nh">
-                    {{ $member->name }}
+                  <h4 class="zh mj ta nh"><a href="{{ route('team') }}">{{ $member->name }}</a>                    
                   </h4>
                   <p class="xa ih xh oh newpad">
                     {{ $member->designation }}

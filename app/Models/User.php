@@ -28,6 +28,7 @@ class User extends Authenticatable
         'linkedin_url',
         'github_url',
         'experience',
+        'slug'
 
     ];
 
