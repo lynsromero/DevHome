@@ -54,7 +54,11 @@ submitForm(e) {
 
             <form action="{{ route('email.submit') }}" @submit.prevent="submitForm($event)">
               @csrf
-              <input type="hidden" name="project_id" value="{{ $projects->id }}">
+              @if (Route::is('team'))
+              <input type="hidden" name="user_id" value="{{ $user->id }}">
+              @else
+              <input type="hidden" name="project_id" value="{{ $projects->id }}">                
+              @endif
               <div class="-ud-mx-4 sb wd">
                 <div class="oc tf bl/2">
                   <div class="kb">

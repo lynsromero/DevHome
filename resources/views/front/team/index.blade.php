@@ -111,4 +111,8 @@
             </div>
         </div>
     </section>
+      @include('front.layouts.home.portfolio')
+
+
+    @include('front.layouts.home.project-contact')
 @endsection

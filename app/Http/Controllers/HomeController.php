@@ -16,21 +16,21 @@ use App\Services\HomeService;
 
 class HomeController extends Controller
 {
-public function index(Request $request, HomeService $homeService)
-{
-    
-    $data = $homeService->getHomeData($request);
+    public function index(Request $request, HomeService $homeService)
+    {
 
-    
-    if ($request->ajax()) {
-        return view('front.partials.project_cards', [
-            'projects' => $data['projects']
-        ])->render();
+        $data = $homeService->getHomeData($request);
+
+
+        if ($request->ajax()) {
+            return view('front.partials.project_cards', [
+                'projects' => $data['projects']
+            ])->render();
+        }
+
+
+        return view('front.layouts.home.index', $data);
     }
-
-    
-    return view('front.layouts.home.index', $data);
-}
 
 
     public function project(Request $request, $slug)
@@ -70,39 +70,45 @@ public function index(Request $request, HomeService $homeService)
         ]);
     }
     public function contactMe(ProjectContactRequest $request)
-    {
-        $project = Projects::findOrFail($request->project_id);
-        Email::create(array_merge($request->validated(), [
-        'user_id' => $project->user_id
-    ]));
+    {        
+        if ($request->has('user_id')) {           
+            $targetUserId = $request->user_id;
+        } else {
+            $project = Projects::findOrFail($request->project_id);
+            $targetUserId = $project->user_id;
+        }
 
+        Email::create(array_merge($request->validated(), [
+            'user_id' => $targetUserId,            
+            'project_id' => $request->project_id ?? null
+        ]));
 
         return response()->json([
             'success' => true,
-            'message' => "I've Received Your SMS, Thank You"
+            'message' => "I've Received Your Message, Thank You"
         ]);
     }
 
     public function uploadEditorImage(Request $request)
-{
-    if ($request->hasFile('upload')) {
-        $file = $request->file('upload');
-        
-        // 1. Generate a unique name
-        $fileName = time() . '_' . $file->getClientOriginalName();
-        
-        // 2. Store the image in storage/app/public/project-images
-        // 'public' disk refers to the storage/app/public folder
-        $path = $file->storeAs('project-images', $fileName, 'public');
+    {
+        if ($request->hasFile('upload')) {
+            $file = $request->file('upload');
 
-        // 3. Generate the public URL
-        $url = asset('storage/' . $path);
+            // 1. Generate a unique name
+            $fileName = time() . '_' . $file->getClientOriginalName();
 
-        return response()->json([
-            'fileName' => $fileName,
-            'uploaded' => 1,
-            'url' => $url
-        ]);
+            // 2. Store the image in storage/app/public/project-images
+            // 'public' disk refers to the storage/app/public folder
+            $path = $file->storeAs('project-images', $fileName, 'public');
+
+            // 3. Generate the public URL
+            $url = asset('storage/' . $path);
+
+            return response()->json([
+                'fileName' => $fileName,
+                'uploaded' => 1,
+                'url' => $url
+            ]);
+        }
     }
-}
 }

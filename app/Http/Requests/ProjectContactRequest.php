@@ -21,14 +21,15 @@ class ProjectContactRequest extends FormRequest
      */
     public function rules(): array
     {
-                return [
+        return [
             'first_name' => 'required|string|max:255',
+            'user_id'    => 'nullable|exists:users,id',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'message' => 'required|string|max:10000',
             // 'phone_number' => 'phone:INTERNATIONAL,BD',
             'phone_number' => 'nullable|string|max:20',
-            
+
         ];
     }
 }
