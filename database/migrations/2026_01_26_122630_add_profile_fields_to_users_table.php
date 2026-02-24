@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('experience')->nullable()->after('github_url');
             $table->string('languages')->nullable()->after('experience');
             $table->string('slug')->nullable()->after('designation');
+            $table->string('biography')->nullable()->after('image');
         });
     }
 

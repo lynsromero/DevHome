@@ -26,8 +26,13 @@
                   <img src="{{ asset($member->image) }}" alt="image" class="oc" />
                 </div>
                 <div class="yg">
-                  <h4 class="zh mj ta nh"><a href="{{ route('team') }}">{{ $member->name }}</a>                    
-                  </h4>
+                  <h4 class="zh mj ta nh">
+    @if(!$member->slug)
+        {{ $member->name }}
+    @else
+        <a href="{{ route('team', $member->slug) }}">{{ $member->name }}</a>
+    @endif
+</h4>
                   <p class="xa ih xh oh newpad">
                     {{ $member->designation }}
                   </p>

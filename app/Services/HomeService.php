@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\Models\User;
@@ -12,14 +13,14 @@ use Illuminate\Http\Request;
 class HomeService
 {
 
-protected $projectService;
+    protected $projectService;
 
-public function __construct(ProjectService $projectService)
-{
-  $this->projectService = $projectService;
-}
+    public function __construct(ProjectService $projectService)
+    {
+        $this->projectService = $projectService;
+    }
 
-public function getHomeData(Request $request)
+    public function getHomeData(Request $request)
     {
         return [
             'projects' => $this->projectService->getFilteredProjects($request),

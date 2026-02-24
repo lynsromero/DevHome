@@ -1,7 +1,7 @@
 @forelse ($projects as $project)
   <div class="oc tf bl/2 gn/3 qb">
     <div class="animate_top k eb">
-      <div class="ke se">
+      <div class="ke se imgnte">
         <img src="{{ asset("$project->thumbnail")}}" alt="portfolio" class="oc productimg" />
       </div>
       <div class="k ca ma -ud-mt-20 ne cf hj fg ag yg hi">

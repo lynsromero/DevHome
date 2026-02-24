@@ -23,7 +23,7 @@ Route::controller(HomeController::class)->group(function(){
 
 });
 
-Route::get('/team' , [TeamController::class, 'index'])->name('team');
+Route::get('/{slug}' , [TeamController::class, 'index'])->name('team');
 
 
 

@@ -1,144 +1,114 @@
 @extends('front.layouts.master')
 @section('content')
-  <section class="ke eg mm mn">
-<div class="card-container">
-  <div class="profile-card">
-    <h2 class="profile-title">Profile picture</h2>
+    <section class="ke eg mm mn albtm">
+        <div class="card-container">
+            <div class="profile-card">
+                <div class="profile-body">
+                    <div class="profile-main-content">
+                        <img class="profile-avatar" src="{{ asset($user->image) }}" alt="Joseph McFall">
 
-    <div class="profile-body">
-      <div class="profile-main-content">
-        <img class="profile-avatar" src="https://flowbite.com/application-ui/demo/images/users/joseph-mcfall.png" alt="Joseph McFall">
-        
-        <div class="profile-info">
-          <span class="badge-pro">PRO</span>
-          <h4 class="profile-name">Joseph McFall</h4>
-          <span class="profile-role">Web Developer</span>
+                        <div class="profile-info">
+                            <span class="badge-pro">Active</span>
+                            <h4 class="profile-name">{{ Str::title($user->name) }}</h4>
+                            <span class="profile-role">{{ $user->designation }}</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-stacks">
+                        <div class="stack-label">Expert Stacks</div>
+                        <ul style="list-style: none; padding: 0;">
+                            @php
+                                $languages = explode(',', $user->languages);
+                            @endphp
+                            @foreach ($languages as $language)
+                                <li class="stack-item">{{ ucfirst(trim($language)) }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+    <section class="ke eg mm mn new-align">
+        <div class="profile-section">
+            <div class="profile-detail-card">
 
-      <div class="profile-stacks">
-        <div class="stack-label">Expert Stacks</div>
-        <ul style="list-style: none; padding: 0;">
-          <li class="stack-item">Laravel / PHP</li>
-          <li class="stack-item">Tailwind CSS</li>
-          <li class="stack-item">Vue.js / React</li>
-          <li class="stack-item">MySQL</li>
-        </ul>
-      </div>
-    </div>   
-  </div>
-</div>
-  </section>
+                <div class="card-header">
+                    <h2 class="card-title">Personal information</h2>
+                </div>
 
+                <hr class="card-divider" />
 
+                <div class="profile-grid">
+                    <div class="column-spacer">
+                        <dl>
+                            <div>
+                                <dt class="profile-label">Full name</dt>
+                                <dd class="profile-value">{{ Str::title($user->name) }}</dd>
+                            </div>
+                            <div>
+                                <dt class="profile-label">Biography</dt>
+                                <dd class="profile-value">{{ $user->biography }}</dd>
+                            </div>
+                            <div>
+                                <dt class="profile-label">Social</dt>
+                                <dd class="social-list">
+                                    <a href="{{ $user->facebook_url }}" class="hover:text-white"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                            viewBox="0 0 30 30" fill="none" stroke="#1877F2" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-facebook-icon lucide-facebook">
+                                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                                        </svg></a>
+                                    <a href="{{ $user->linkedin_url }}" class="hover:text-white"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                            viewBox="0 0 30 30" fill="none" stroke="#0077B5" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-linkedin-icon lucide-linkedin">
+                                            <path
+                                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                            <rect width="4" height="12" x="2" y="9" />
+                                            <circle cx="4" cy="4" r="2" />
+                                        </svg></a>
+                                    <a href="{{ $user->github_url }}" class="hover:text-white"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                            viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-github-icon lucide-github">
+                                            <path
+                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                            <path d="M9 18c-4.51 2-5-2-7-2" />
+                                        </svg></a>
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <div class="column-spacer">
+                        <dl>
+                            <div>
+                                <dt class="profile-label">Email Adress</dt>
+                                <a href="mailto:{{ $user->email }}"><dd class="profile-value iconset"><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3056d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-at-sign-icon lucide-at-sign"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg></span>{{ $user->email }}</dd></a>
+                            </div>
+                            <div>
+                                <dt class="profile-label">Tech Stack Skills</dt>
+                                <dd class="software-list">
+                                    @php
+                                        $languages = explode(',', $user->languages);
+                                    @endphp
+                                    @foreach ($languages as $language)
+                                        <span class="skill-badge profile-value">{{ ucfirst(trim($language)) }}</span>
+                                    @endforeach
+                                </dd>                                
+                            </div>
+                            <div>
+                                <dt class="profile-label">Years of Experience</dt>
+                                <dd class="profile-value">{{ $user->experience }}</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
-
-
-<?php
-/**
- * Enqueue script and styles for child theme
- */
-define('DSK_VERSION', '1.1.4');
-
-$cache_buster = DSK_VERSION;
-if ( defined( 'WP_DEBUG' ) && WP_DEBUG) {
-  $cache_buster = date("YmdHi", filemtime( get_stylesheet_directory() . '/css/main.css'));
-}
-function woodmart_child_enqueue_styles() {
-  global $cache_buster;
-	wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'woodmart-style' ), $cache_buster );
-}
-//add_action( 'wp_enqueue_scripts', 'woodmart_child_enqueue_styles', 10010 );
-
-function my_scripts_and_styles(){
-  global $cache_buster;
-	wp_enqueue_style( 'main-style', get_stylesheet_directory_uri() . '/css/main.css', array( 'woodmart-style' ), $cache_buster, 'all' );
-
-}
-add_action( 'wp_enqueue_scripts', 'my_scripts_and_styles', 99999);
-
-// Make postal code optional
-add_filter( 'woocommerce_default_address_fields', 'customize_extra_fields', 1000, 1 );
-function customize_extra_fields( $address_fields ) {
-    $address_fields['postcode']['required'] = false; //Postcode
-    return $address_fields;
-}
-
-// Hide checkout fields
-function reorder_billing_fields($fields) {
-    $billing_order = [
-        'billing_first_name',
-        'billing_last_name',
-		    'billing_email',
-        'billing_country',
-        'billing_address_1',
-        'billing_postcode',
-        'billing_phone'
-    ];
-
-    foreach ($billing_order as $field) {
-		if('billing_phone' == $fields['billing'][$field]){
-			
-		}
-        $ordered_fields[$field] = $fields['billing'][$field];
-    }
-
-	$ordered_fields['billing_phone']['required'] = false;
-
-
-    $fields['billing'] = $ordered_fields;
-
-    return $fields;
-}
-
-add_filter('woocommerce_checkout_fields', 'reorder_billing_fields');
-
-add_action('wp_footer', function(){
-	
-	$output = <<<EOT
-<script>
-  (function (s, e, n, d, er) {
-    s['Sender'] = er;
-    s[er] = s[er]  function () {
-      (s[er].q = s[er].q  []).push(arguments)
-    }, s[er].l = 1 * new Date();
-    var a = e.createElement(n),
-        m = e.getElementsByTagName(n)[0];
-    a.async = 1;
-    a.src = d;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
-  sender('94004659510774')
-</script>
-EOT;
-	echo $output;
-});
-
-
-add_filter('elementor/image_carousel/item_attributes' , function( $attributes, $instance, $item ) {
-    if(is_fornt_page()){
-        unset($attributes ['loading']);
-        $attributes['fetchpriority'] = 'high';
-        $attributes['decoding'] = 'sync';
-    }
-    return $attributes;
-}, 10, 3);
-
-
-
-
-add_action( 'wp_head', function() {
-    if ( is_front_page() ) {
-        // We look for the specific image URL you provided in the LCP report
-        $lcp_url = 'https://digitalsoftwarekey.com/wp-content/uploads/2026/02/Valentines-slider-26.webp';
-        
-        echo '<link rel="preload" as="image" href="' . esc_url( $lcp_url ) . '" fetchpriority="high">';
-    }
-}, 1 );
-
-
-
-
-
-
-

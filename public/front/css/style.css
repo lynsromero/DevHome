@@ -2404,7 +2404,8 @@ body {
 }
 .productimg {
     height: 245px;
-    width: 370px;
+    max-width: 100%;
+    display: block;
 }
 
 .newpad {
@@ -2473,8 +2474,7 @@ body {
 .card-container {
     display: flex;
     justify-content: center; /* Horizontally centers */
-    align-items: center;     /* Vertically centers */
-    
+    align-items: center; /* Vertically centers */
 }
 
 /* Your existing profile-card styles */
@@ -2500,7 +2500,7 @@ body {
 .profile-body {
     display: flex;
     justify-content: space-between; /* Pushes stacks to the right */
-    align-items: flex-start;        /* Aligns items to the top */
+    align-items: flex-start; /* Aligns items to the top */
     margin-top: 1.5rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid #e5e7eb;
@@ -2522,8 +2522,14 @@ body {
     margin-top: 0.25rem;
 }
 @media (prefers-color-scheme: dark) {
-    .stack-label { color: #9ca3af; }
-    .stack-item { color: #e5e7eb; }
+    .c.af .stack-label {
+        --tw-text-opacity: 1;
+        color: rgb(48 86 211 / var(--tw-text-opacity));
+        font-weight: 600;
+    }
+    .c.af .stack-item {
+        color: #ffffff;
+    }
 }
 .profile-avatar {
     width: 6rem;
@@ -2549,7 +2555,8 @@ body {
 
 .profile-role {
     font-size: 1.25rem;
-    color: #6b7280;
+    color: rgb(48 86 211 / var(--tw-text-opacity));
+    font-weight: 600;
 }
 
 /* PRO Badge */
@@ -2559,16 +2566,179 @@ body {
     border-radius: 0.25rem;
     font-size: 0.75rem;
     font-weight: 500;
-    background-color: #dbeafe;
-    color: #1e40af;
+    background-color: #1e40af;
+    color: #9ff5aa;
     margin-inline-end: 0.5rem;
+}
+
+.new-align {
+    padding: 10px 0px;
+}
+.albtm {
+    padding-bottom: 20px;
+}
+.profile-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    color: #d1d5db; /* Light gray text */
+}
+
+/* Card Styling */
+.profile-detail-card {
+    width: 1333px;
+    max-width: 100%; /* max-w-4xl */
+    background-color: #ffffff; /* Slightly lighter navy */
+    padding: 32px;
+    border-radius: 8px;
+    border: 1px solid rgba(55, 65, 81, 0.5); /* border-gray-700/50 */
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Header Section */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #374151;
+    margin: 0;
+}
+
+.info-icon-btn {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0;
+}
+
+.info-icon-btn:hover {
+    color: #ffffff;
+}
+
+.card-divider {
+    border: 0;
+    border-top: 1px solid #374151; /* gray-700 */
+    margin-bottom: 32px;
+}
+
+/* Grid Layout */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+}
+
+@media (min-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.column-spacer dl > div {
+    margin-bottom: 24px;
+}
+
+/* Labels and Values */
+.profile-label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 4px;
+}
+
+.profile-value {
+    font-size: 15px;
+    color: #6e7f9e;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Social Icons */
+.social-list {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.social-list a {
+    color: #9ca3af;
+    text-decoration: none;
+}
+
+.social-list a:hover {
+    color: #ffffff;
+}
+
+/* Software Skills */
+.software-list {
+    display: flex;
+    flex-wrap: wrap;    
+    margin-top: 12px;
+    gap: 5px;
+}
+
+.skill-badge {
+    padding-left: 4px;
+    
+}
+
+.bg-\[\#dc395f\] {
+    background-color: #dc395f;
+}
+.bg-orange-500 {
+    background-color: #f97316;
+}
+.bg-purple-500 {
+    background-color: #a855f7;
 }
 
 /* --- Dark Mode Support --- */
 @media (prefers-color-scheme: dark) {
-    .profile-card { background-color: #1f2937; }
-    .profile-title, .profile-name { color: #ffffff; }
-    .profile-body { border-color: #374151; }
-    .profile-role { color: #9ca3af; }
-    .badge-pro { background-color: #1e3a8a; color: #93c5fd; }
+    .c.af .profile-card {
+        background-color: #1f2937;
+    }
+    .c.af .profile-title,
+    .c.af .profile-name {
+        color: #ffffff;
+    }
+    .c.af .profile-detail-card {
+        background-color: #1f2937;
+    }
+
+    .c.af .profile-body {
+        border-color: #374151;
+    }
+    .c.af .card-title {
+        color: #ffffff;
+    }
+    .c.af .profile-label {
+        color: #ffffff;
+    }
+    .c.af .profile-value {
+        color: #ffffff;
+    }
+}
+
+.imgnte {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    overflow: hidden;
+}
+
+.iconset {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }

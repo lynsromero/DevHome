@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "ckeditor5": "^47.5.0",
-        "jquery": "^4.0.0"
+        "jquery": "^4.0.0",
+        "lucide": "^0.575.0"
     }
 }
