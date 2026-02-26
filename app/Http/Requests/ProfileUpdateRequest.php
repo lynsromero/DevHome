@@ -25,7 +25,7 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'name'          => ['required', 'string', 'max:255'],
             'email'         => ['required', 'email', 'max:255', 'unique:users,email,' . $this->user()->id],
-            'image'         => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'image'         => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
             'designation'   => ['nullable', 'string', 'max:255'],
             'facebook_url'  => ['nullable', 'url'],
             'linkedin_url'  => ['nullable', 'url'],

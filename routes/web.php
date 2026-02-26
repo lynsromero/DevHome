@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TodoController;
 use App\Http\Controllers\Admin\WebsiteSettingsController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CVController;
 
 
 // FrontEnd
@@ -24,6 +24,12 @@ Route::controller(HomeController::class)->group(function(){
 });
 
 Route::get('/team/{slug}' , [TeamController::class, 'index'])->name('team');
+
+
+Route::controller(CVController::class)->group(function(){
+    Route::get('/cv/devhome/{slug}' ,'generateDevHome')->name('cv.devhome');
+    Route::get('/cv/custom/{slug}' ,'downloadCustom')->name('cv.custom');
+});
 
 
 

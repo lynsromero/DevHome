@@ -12,32 +12,36 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        return view('admin.profile', compact('user'));
+        $data = [
+            'user' => Auth::user(),
+        ];
+
+        return view('admin.profile', $data);
     }
     public function update(ProfileUpdateRequest $request)
     {
-        $user = $request->user();
-        $validated = $request->validated();
+        $user = $request->user();        
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            
             if ($user->image && file_exists(public_path($user->image))) {
                 unlink(public_path($user->image));
             }
-
-           
             $filename = time() . '_' . $image->getClientOriginalName();
-
-           
             $image->storeAs('images', $filename, 'public');
-
-            
             $user->image = 'storage/images/' . $filename;
         }
 
+        if ($request->hasFile('custom_cv')) {
+            $cv = $request->file('custom_cv');
+            if($user->custom_cv && file_exists(public_path($user->custom_cv))){
+                unlink(public_path($user->custom_cv));
+            }
+            $cvFilename = time() . '_' . $cv->getClientOriginalName();
+            $cv->storeAs('dev_cvs', $cvFilename, 'public');
+            $user->custom_cv = 'storage/dev_cvs/' . $cvFilename;
+        }
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -46,22 +50,22 @@ class ProfileController extends Controller
         $user->linkedin_url = $request->linkedin_url;
         $user->github_url = $request->github_url;
         $user->experience = $request->experience;
-        if ($request->filled('languages')) {        
-        $user->languages = array_map('trim', explode(',', $request->languages));
-    }
+        if ($request->filled('languages')) {
+            $user->languages = array_map('trim', explode(',', $request->languages));
+        }
 
-        
+
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
 
         if ($request->ajax()) {
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Profile updated successfully!',
-            'user' => $user
-        ]);
-    }
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Profile updated successfully!',
+                'user' => $user
+            ]);
+        }
         $user->save();
 
         return redirect()->back()->with('success', 'Profile updated!');

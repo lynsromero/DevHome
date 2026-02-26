@@ -28,7 +28,8 @@ class User extends Authenticatable
         'linkedin_url',
         'github_url',
         'experience',
-        'slug'
+        'slug',
+        'custom_cv',
 
     ];
 
@@ -60,6 +61,11 @@ class User extends Authenticatable
 
     public function emails() {
     return $this->hasMany(Email::class);
+}
+
+public function getRouteKeyName()
+{
+    return 'slug';
 }
 
 }

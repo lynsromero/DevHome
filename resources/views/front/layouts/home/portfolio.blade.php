@@ -64,7 +64,7 @@
                 <div class="animate_top la ib kd yg" data-sr-id="8"
                     style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: all, opacity 2.8s cubic-bezier(0.5, 0, 0, 1), transform 2.8s cubic-bezier(0.5, 0, 0, 1);"
                     bis_skin_checked="1">
-                    <h2 class="zh mj va bh lh lk ll">
+                    <h2 class="yh va bh lh lk ll ">
                         Portfolio Of {{ Str::title($user->name) }}
                     </h2>
                 </div>

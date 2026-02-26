@@ -33,6 +33,7 @@ class AddDevRequest extends FormRequest
             'experience' => 'nullable|string',
             'languages' => 'nullable|array',
             'password' => 'required|string|min:8',
+            'custom_cv' => 'nullable|mimes:pdf|max:5120'
         ];
     }
 }

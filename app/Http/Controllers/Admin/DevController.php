@@ -90,6 +90,7 @@ class DevController extends Controller
     {
 
         $imageName = null;
+        
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -97,11 +98,11 @@ class DevController extends Controller
             $imageName = 'storage/' . $path;
         }
 
-
         $dev = new User();
         $dev->name = $request->name;
         $dev->email = $request->email;
         $dev->image = $imageName;
+        $dev->custom_cv = $cvName;
         $dev->designation = $request->designation;
         if (empty($request->slug)) {
             $dev->slug = Str::slug($request->title);

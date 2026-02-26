@@ -88,7 +88,15 @@
                         <dl>
                             <div>
                                 <dt class="profile-label">Email Adress</dt>
-                                <a href="mailto:{{ $user->email }}"><dd class="profile-value iconset"><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3056d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-at-sign-icon lucide-at-sign"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg></span>{{ $user->email }}</dd></a>
+                                <a href="mailto:{{ $user->email }}">
+                                    <dd class="profile-value iconset"><span><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                stroke="#3056d3" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" class="lucide lucide-at-sign-icon lucide-at-sign">
+                                                <circle cx="12" cy="12" r="4" />
+                                                <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8" />
+                                            </svg></span>{{ $user->email }}</dd>
+                                </a>
                             </div>
                             <div>
                                 <dt class="profile-label">Tech Stack Skills</dt>
@@ -99,20 +107,38 @@
                                     @foreach ($languages as $language)
                                         <span class="skill-badge profile-value">{{ ucfirst(trim($language)) }}</span>
                                     @endforeach
-                                </dd>                                
+                                </dd>
                             </div>
                             <div>
                                 <dt class="profile-label">Years of Experience</dt>
                                 <dd class="profile-value">{{ $user->experience }}</dd>
                             </div>
                         </dl>
+                                <ul class="sb wd xd yd">
+            <li>
+                <a href="{{ route('cv.devhome', $user->slug) }}"
+                    class="bf ja ub xd yd ve ze cg oe dg _h xi dk lg:px-ud-8 ln">
+                    DevHome CV
+                </a>
+            </li>
+            <li>
+                @if ($user->custom_cv)
+                    <a href="{{ route('cv.custom', $user->slug) }}" class="bf ja ub xd yd ve ze cg oe dg _h xi dk lg:px-ud-8 ln">
+                        Customized CV
+                    </a>
+                @else
+                    <span style="display: none"></span>
+                @endif
+            </li>
+        </ul>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
+
+
+
     </section>
-      @include('front.layouts.home.portfolio')
-
-
+    @include('front.layouts.home.portfolio')
     @include('front.layouts.home.project-contact')
 @endsection
