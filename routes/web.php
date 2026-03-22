@@ -61,8 +61,12 @@ Route::middleware('auth')->group(function(){
     Route::post('/profile-update' , [ProfileController::class, 'update'])->name('profile.update');
 
     Route::get('/add-project' , [ProjectController::class, 'index'])->name('add.project');
-
+    
     Route::post('/store-project' , [ProjectController::class, 'store'])->name('store.project');
+
+    Route::get('/edit-project/{slug}' , [ProjectController::class, 'edit'])->name('edit.project');
+
+    Route::post('/update-project/{slug}' , [ProjectController::class, 'update'])->name('update.project');
 
     Route::get('/project-list' , [ProjectController::class, 'list'])->name('list.project');
 

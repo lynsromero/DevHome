@@ -27,7 +27,8 @@
                         </td>                        
                         <td style="width: 170px;">
                             <a href="{{ route('project.view' , $project->slug) }}" class="btn btn-sm btn-sm-square btn-outline-info m-1" target='_blank' title="View"><i class="fa fa-eye"></i></a>
-                            <a href="" class="btn btn-sm btn-sm-square btn-outline-warning m-1" title="Edit"><i class="fa fa-edit" target='_blank'></i></a>
+
+                            <a href="{{ route('edit.project', $project->slug) }}" class="btn btn-sm btn-sm-square btn-outline-warning m-1" title="Edit"><i class="fa fa-edit" target='_blank'></i></a>
                             
                             
                             <form action="{{ route('projects.destroy', $project->slug) }}" method="POST" style="display:inline;">

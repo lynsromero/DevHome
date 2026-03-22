@@ -49,7 +49,7 @@ class ProjectController extends Controller
         }
 
         $project->save();
-        return redirect()->route('dashboard')->with('success', 'Project Updated Successfully!');
+        return redirect()->route('ist.project')->with('success', 'Project Updated Successfully!');
     }
 
     public function list()
@@ -57,6 +57,48 @@ class ProjectController extends Controller
         $user = Auth::user();
         $projects = Projects::where('user_id', Auth::user()->id)->latest()->get();
         return view('admin.projects.list', compact('user', 'projects'));
+    }
+
+    public function edit($slug){
+        $data = [
+            'user' => Auth::user(),
+            'project' => Projects::where('slug' , $slug)->first(),
+        ];
+       
+        return view('admin.projects.edit' , $data);
+    }
+
+    public function update(Request $request, $slug)
+    {
+        $project = Projects::where('slug', $slug)->first();
+        $project->title = $request->title;
+        if (empty($request->slug)) {
+            $project->slug = Str::slug($request->title);
+        } else {
+
+            $project->slug = Str::slug($request->slug);
+        }
+        $project->description = $request->description;
+        $project->github_url = $request->github_url;
+        $project->live_url = $request->live_url;
+
+
+        if ($request->tech_stack) {
+            $project->tech_stack = array_map('trim', explode(',', $request->tech_stack));
+        }
+
+
+        if ($request->hasFile('thumbnail')) {
+            $image = $request->file('thumbnail');
+
+
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('project_thumbnail', $filename, 'public');
+            $project->thumbnail = 'storage/project_thumbnail/' . $filename;
+        }
+
+        $project->save();
+        return redirect()->route('dashboard')->with('success', 'Project Updated Successfully!');
     }
 
     public function destroy($slug)
@@ -67,7 +109,6 @@ class ProjectController extends Controller
         }
         $project->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Project removed successfully.');
+        return redirect()->route('list.project')->with('success', 'Project removed successfully.');
     }
-
 }
