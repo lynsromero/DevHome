@@ -2742,3 +2742,42 @@ body {
     align-items: center;
     gap: 5px;
 }
+
+.project_content h2 {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.project_content h3 {
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.project_content h4 {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.project_content h5 {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+
+.project_content p {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.project_content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}

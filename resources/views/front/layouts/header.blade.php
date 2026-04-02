@@ -33,7 +33,7 @@
       <nav class="new-nav">
         <ul class="sb hm vd gm ce km">
           <li class="nav__menu sm" :class="{ 'tm' : stickyMenu }">
-            <a href="/#home" class="zh mj _i nj" :class="{'bi' :page === 'home'}">Home</a>
+            <a href="{{ route('home') }}" class="zh mj _i nj" :class="{'bi' :page === 'home'}">Home</a>
           </li>
           <li class="nav__menu sm" :class="{ 'tm' : stickyMenu }">
             <a href="/#about" class="zh mj _i nj">About Us</a>

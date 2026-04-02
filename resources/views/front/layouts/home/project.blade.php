@@ -6,15 +6,15 @@
       <div class="-ud-mx-4 sb wd yd">
         <div class="oc tf em/12 fn/12">
           <div class="oc">
-            <h2 class="animate_top zh mj za eh lh rh nk wk ml ql" data-sr-id="1"
+            <h1 class="animate_top zh mj za eh lh rh nk wk ml ql" data-sr-id="1"
               style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: all, opacity 2.8s cubic-bezier(0.5, 0, 0, 1), transform 2.8s cubic-bezier(0.5, 0, 0, 1);">
-              {{ $projects->title }}
-            </h2>
+              {{ Str::title($projects->title) }}
+            </h1>
             <div class="animate_top sb wd xd pg" data-sr-id="3"
               style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: all, opacity 2.8s cubic-bezier(0.5, 0, 0, 1), transform 2.8s cubic-bezier(0.5, 0, 0, 1);">
               <div class="va _a sb xd xk">
                 <div class="ab yb qc ke qe">
-                  <img src="{{ $user->image }}" alt="image" class="oc">
+                  <img src="{{ asset($user->image) }}" alt="image" class="oc">
                 </div>
                 <p class="mh">
                   By
@@ -86,12 +86,12 @@
             </div>
             <div class="animate_top ke me xf" data-sr-id="5"
               style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: all, opacity 2.8s cubic-bezier(0.5, 0, 0, 1), transform 2.8s cubic-bezier(0.5, 0, 0, 1);">
-              <img src="{{ $projects->thumbnail }}" alt="image" class="oc">
+              <img src="{{ asset($projects->thumbnail) }}" alt="image" class="oc">
             </div>
 
-            <p class="animate_top fo" data-sr-id="4" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: all, opacity 2.8s cubic-bezier(0.5, 0, 0, 1), transform 2.8s cubic-bezier(0.5, 0, 0, 1);">
-                  {{ $projects->description }}
-                </p>
+            <div class="animate_top fo project_content" data-sr-id="4">
+                  {!! $projects->description !!}
+                </div>
             <div class="code-block-container mt-4">
     <div class="code-header d-flex justify-content-between align-items-center">
         <span>Tech Stack</span>

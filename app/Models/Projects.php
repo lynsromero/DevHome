@@ -27,5 +27,7 @@ protected $casts = [
 {
     return $this->hasMany(ProjectView::class, 'projects_id');
 }
+
+
 }
 
