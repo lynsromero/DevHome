@@ -1,5 +1,5 @@
-# Use PHP 8.4 with FPM and Nginx
-FROM richarvey/php-nginx:latest
+# Use a specific, stable version instead of 'latest'
+FROM richarvey/php-nginx:php8.3
 
 # Set the working directory
 WORKDIR /var/www/html
