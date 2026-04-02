@@ -28,6 +28,8 @@ RUN npm install && npm run build
 
 # Configure Permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
+RUN chmod -R 775 storage bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache
 
 # Nginx config (This tells Render how to serve your /public folder)
 RUN printf "server { \n\
