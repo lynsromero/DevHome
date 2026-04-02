@@ -8,7 +8,7 @@
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0-06B6D4?style=for-the-badge&logo=tailwind-css)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-**A modern, feature-rich portfolio platform built with Laravel 12 for developers to showcase their projects and manage their online presence.**
+**A modern, feature-rich portfolio platform built with Laravel 12 for developers to showcase their projects, manage CVs, and build their online presence.**
 
 [🚀 Live Demo](https://github.com/lynsromero/DevHome) • [📖 Documentation](#documentation) • [🤝 Contributing](#contributing)
 
@@ -41,19 +41,24 @@
 - **📧 Contact Form** - Professional contact system with validation
 - **👥 Team Display** - Showcase team members and their profiles
 - **🔗 SEO-Friendly URLs** - Clean URLs with slugs and meta tags
+- **📄 Rich Project Content** - HTML content rendering with TinyMCE editor
+- **👤 Developer Profile Pages** - Individual profile pages for each developer (`/team/{slug}`)
+- **📥 CV Download** - Generate and download professional CVs in PDF format
+- **📬 Project Contact Form** - Direct contact form on project pages
 - **🗂️ Organized View Structure** - Modular frontend layouts for better maintainability
 
 ### 🛡️ Admin Panel Features
 - **🔐 Secure Authentication** - Protected admin dashboard with role-based access
 - **📊 Enhanced Analytics Dashboard** - Real-time statistics with modular components
-- **📁 Project Management** - Full CRUD operations for projects
-- **👤 Profile Management** - Update personal information and social links
-- **📸 Image Uploads** - Handle project thumbnails and profile images
+- **📁 Project Management** - Full CRUD operations with TinyMCE rich text editor
+- **👤 Profile Management** - Update personal information, social links, and custom CV
+- **📸 Image Uploads** - Handle project thumbnails, profile images, and in-editor images
 - **📧 Email Tracking** - Monitor and manage contact submissions
 - **⚙️ Settings Management** - Dynamic website configuration
-- **👥 Developer Management** - Add and manage developer profiles
+- **👥 Developer Management** - Add and manage developer profiles with slugs
 - **📝 Todo System** - Task management with date/time tracking
 - **📞 Contact Management** - View and manage website contacts
+- **📄 CV Management** - Upload custom CV PDFs and generate DevHome CVs
 - **🔧 Dashboard Service** - Modular service-based architecture
 
 ---
@@ -67,15 +72,19 @@
 | **PHP** | 8.2+ | Backend Language |
 | **MySQL** | 5.7+ | Database |
 | **Propaganistas Laravel Phone** | 6.0 | Phone Validation |
+| **Spatie Laravel PDF** | 2.2 | PDF Generation |
+| **Spatie Browsershot** | 5.2 | Screenshot/PDF from HTML |
 
 ### Frontend Technologies
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | **TailwindCSS** | 4.0 | CSS Framework |
 | **Alpine.js** | Latest | JavaScript Interactivity |
-| **jQuery** | 3.6.0 | DOM Manipulation |
+| **CKEditor 5** | 47.5 | Rich Text Editor |
 | **Vite** | 7.0 | Build Tool |
 | **Axios** | 1.11.0 | HTTP Client |
+| **Lucide** | 0.575 | Icon Library |
+| **Puppeteer** | 24.37 | Headless Chrome for PDF |
 
 ### Development Tools
 | Tool | Purpose |
@@ -84,6 +93,8 @@
 | **PHPUnit** | Testing Framework |
 | **Laravel Pint** | Code Formatting |
 | **Concurrently** | Multi-Process Development |
+| **Laravel Sail** | Database Schema Visualization |
+| **Laravel Pail** | Error Logging |
 
 ---
 
@@ -102,10 +113,15 @@ DevHome/
 │   │   │   │   ├── 📄 ProjectController.php
 │   │   │   │   ├── 📄 TodoController.php
 │   │   │   │   └── 📄 WebsiteSettingsController.php
-│   │   │   └── 📄 HomeController.php
+│   │   │   ├── 📄 CVController.php
+│   │   │   ├── 📄 HomeController.php
+│   │   │   └── 📄 TeamController.php
 │   │   └── 📂 Requests/
 │   │       ├── 📄 AddDevRequest.php
 │   │       ├── 📄 ContactRequest.php
+│   │       ├── 📄 ProfileUpdateRequest.php
+│   │       ├── 📄 ProjectContactRequest.php
+│   │       ├── 📄 ProjectRequest.php
 │   │       └── 📄 WebsiteSettingsRequest.php
 │   ├── 📂 Models/
 │   │   ├── 📄 User.php
@@ -114,9 +130,11 @@ DevHome/
 │   │   ├── 📄 Contact.php
 │   │   ├── 📄 Email.php
 │   │   ├── 📄 Todo.php
+│   │   ├── 📄 TechStack.php
 │   │   └── 📄 Website_settings.php
 │   └── 📂 Services/
 │       ├── 📄 DashboardService.php
+│       ├── 📄 HomeService.php
 │       └── 📄 ProjectService.php
 ├── 📂 config/
 ├── 📂 database/
@@ -131,29 +149,55 @@ DevHome/
 │   ├── 📂 views/
 │   │   ├── 📂 admin/
 │   │   │   ├── 📂 dashboard/
+│   │   │   │   ├── 📄 email-list.blade.php
+│   │   │   │   ├── 📄 overview.blade.php
+│   │   │   │   ├── 📄 recent_projects.blade.php
+│   │   │   │   └── 📄 todo.blade.php
 │   │   │   ├── 📂 layouts/
+│   │   │   ├── 📂 projects/
+│   │   │   │   ├── 📄 add.blade.php
+│   │   │   │   ├── 📄 edit.blade.php
+│   │   │   │   └── 📄 list.blade.php
+│   │   │   ├── 📄 403_redirect.blade.php
 │   │   │   ├── 📄 add-dev.blade.php
 │   │   │   ├── 📄 contacts.blade.php
 │   │   │   ├── 📄 dashboard.blade.php
 │   │   │   ├── 📄 dev_list.blade.php
 │   │   │   ├── 📄 email_list.blade.php
+│   │   │   ├── 📄 login.blade.php
+│   │   │   ├── 📄 profile.blade.php
 │   │   │   ├── 📄 todo.blade.php
 │   │   │   └── 📄 website_settings.blade.php
 │   │   ├── 📂 front/
+│   │   │   ├── 📂 home/
+│   │   │   │   ├── 📄 about.blade.php
+│   │   │   │   ├── 📄 hero.blade.php
+│   │   │   │   ├── 📄 index.blade.php
+│   │   │   │   ├── 📄 portfolio.blade.php
+│   │   │   │   ├── 📄 project.blade.php
+│   │   │   │   ├── 📄 project-contact.blade.php
+│   │   │   │   ├── 📄 stats.blade.php
+│   │   │   │   └── 📄 team.blade.php
 │   │   │   ├── 📂 layouts/
-│   │   │   │   ├── 📂 home/
 │   │   │   │   ├── 📄 contact.blade.php
 │   │   │   │   ├── 📄 footer.blade.php
 │   │   │   │   ├── 📄 header.blade.php
 │   │   │   │   └── 📄 master.blade.php
-│   │   │   └── 📂 partials/
-│   │   └── 📄 master.blade.php
+│   │   │   ├── 📂 partials/
+│   │   │   │   ├── 📄 messages.blade.php
+│   │   │   │   └── 📄 project_cards.blade.php
+│   │   │   └── 📂 team/
+│   │   │       └── 📄 index.blade.php
+│   │   └── 📂 pdf/
+│   │       └── 📄 dev_cv.blade.php
 │   ├── 📄 css/app.css
 │   └── 📄 js/app.js
 ├── 📂 routes/
 │   └── 📄 web.php
+├── 📂 storage/
 ├── 📄 composer.json
 ├── 📄 package.json
+├── 📄 phpunit.xml
 └── 📄 vite.config.js
 ```
 
@@ -165,14 +209,14 @@ DevHome/
 
 #### `users` (Extended Laravel Users)
 ```sql
-id, name, email, password, email_verified_at, remember_token
-profile_fields: image, designation, facebook_url, linkedin_url, 
-              github_url, experience, languages (JSON)
+id, name, slug (unique), email, password, email_verified_at, remember_token
+profile_fields: image, custom_cv, designation, facebook_url, linkedin_url, 
+                github_url, experience, languages (JSON), deleted_at
 ```
 
 #### `projects`
 ```sql
-id, user_id (FK), title, slug (unique), description, thumbnail
+id, user_id (FK), title, slug (unique), description (HTML), thumbnail
 github_url, live_url, tech_stack (JSON), views, timestamps
 ```
 
@@ -206,6 +250,11 @@ id, task, task_time, user_id (FK), completed,
 created_at, updated_at, deleted_at
 ```
 
+#### `tech_stacks` (Technology Categories)
+```sql
+id, name, slug, created_at, updated_at
+```
+
 ### Laravel System Tables
 - `cache`, `jobs`, `sessions` (Database driver)
 
@@ -219,6 +268,7 @@ created_at, updated_at, deleted_at
 - **Composer**
 - **Node.js 18+** and **NPM**
 - **Web Server** (Apache/Nginx with mod_rewrite)
+- **Chrome/Chromium** (for PDF generation via Browsershot)
 
 ### ⚡ Quick Setup
 
@@ -335,6 +385,9 @@ MAIL_HOST=your-mail-server
 MAIL_PORT=587
 MAIL_USERNAME=your-email
 MAIL_PASSWORD=your-password
+
+# BrowserShot (for PDF generation)
+BROWSERSHOT_CHROME_PATH=/usr/bin/google-chrome
 ```
 
 ### 🎨 Customization
@@ -355,17 +408,22 @@ Edit `resources/css/app.css` and `tailwind.config.js` for custom theming.
 
 ### 📦 Dependencies
 
-#### PHP Packages (7 total)
+#### PHP Packages (5 main)
 - `laravel/framework` ^12.0 - Main framework
 - `laravel/tinker` ^2.10.1 - Console tool
 - `propaganistas/laravel-phone` ^6.0 - Phone validation
+- `spatie/laravel-pdf` ^2.2 - PDF generation
+- `spatie/browsershot` ^5.2 - HTML to PDF/screenshots
 
-#### Node Packages (6 total)
+#### Node Packages
 - `vite` ^7.0.7 - Build tool
 - `tailwindcss` ^4.0.0 - CSS framework
 - `@tailwindcss/vite` ^4.0.0 - Vite integration
 - `laravel-vite-plugin` ^2.0.0 - Laravel integration
 - `axios` ^1.11.0 - HTTP client
+- `ckeditor5` ^47.5.0 - Rich text editor
+- `lucide` ^0.575.0 - Icon library
+- `puppeteer` ^24.37.5 - Headless Chrome
 - `concurrently` ^9.0.1 - Multi-process runner
 
 ### 🧪 Testing
@@ -414,8 +472,12 @@ npm run dev -- --watch
 | Method | URI | Purpose |
 |--------|-----|---------|
 | GET | `/` | Home page with projects |
-| GET | `/project/{slug}` | Individual project view |
+| GET | `/project/{slug}` | Individual project view with HTML content |
 | POST | `/contact-us` | Contact form submission |
+| POST | `/contact-me` | Project contact form submission |
+| GET | `/team/{slug}` | Developer profile page |
+| GET | `/cv/devhome/{slug}` | Generate DevHome CV as PDF |
+| GET | `/cv/custom/{slug}` | Download custom CV PDF |
 
 ### 🔐 Authentication Routes
 
@@ -431,26 +493,33 @@ npm run dev -- --watch
 |--------|-----|---------|
 | GET | `/dashboard` | Admin dashboard |
 | GET | `/profile` | Profile management |
-| POST | `/profile-update` | Update profile |
+| POST | `/profile-update` | Update profile with CV upload |
 | GET | `/add-project` | Add project form |
 | POST | `/store-project` | Save project |
+| GET | `/edit-project/{slug}` | Edit project form |
+| POST | `/update-project/{slug}` | Update project |
 | GET | `/project-list` | List projects |
 | POST | `/project-delete/{slug}` | Delete project |
 | GET | `/website-settings` | Website configuration |
-| POST | `/website-settings-update` | Update settings |
+| POST | `/website/update` | Update settings |
 | GET | `/email-list` | View contact emails |
-| GET | `/dev-list` | Manage developers |
-| GET | `/add-dev` | Add developer form |
-| POST | `/add-dev-store` | Save developer |
-| GET | `/todo` | Task management |
-| POST | `/todo-store` | Create task |
 | GET | `/website-contacts` | View website contacts |
+| GET | `/add-dev` | Add developer form |
+| POST | `/add-dev` | Save developer |
+| GET | `/dev-list` | Manage developers |
+| GET | `/remove-dev/{id}` | Remove developer |
+| POST | `/remove-dev-ajax/{id}` | AJAX remove developer |
+| GET | `/todo` | Task management |
+| POST | `/todo/store` | Create task |
+| DELETE | `/todo/delete/{id}` | Delete task |
 
 ### 🔄 AJAX Endpoints
 
 - **Project Filtering**: `/?filter={technology}` - Returns filtered projects
 - **Load More**: `/?filter={tech}&load_all=true` - Loads all projects
 - **Contact Submit**: `/contact-us` - Handles contact form with validation
+- **Project Contact**: `/contact-me` - Handles project-specific contact form
+- **Image Upload**: `/project-image-upload` - Upload images for TinyMCE editor
 
 ---
 
@@ -503,7 +572,9 @@ RUN apt-get update && apt-get install -y \
     oniguruma-dev \
     libxml2-dev \
     zip \
-    unzip
+    unzip \
+    chromium \
+    chromium-driver
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -570,19 +641,24 @@ git push origin feature/amazing-feature
 > **🚧 Ongoing Project** - This is an actively maintained project with regular updates and improvements.
 
 ### ✅ Completed Features
-- ✅ Portfolio display system
+- ✅ Portfolio display system with AJAX filtering
 - ✅ Admin panel with authentication
-- ✅ Project CRUD operations
+- ✅ Project CRUD with TinyMCE rich text editor
 - ✅ AJAX filtering and loading
-- ✅ Contact form system
+- ✅ Contact form system (website & project-level)
 - ✅ Analytics and view tracking
 - ✅ Dynamic settings management
-- ✅ Developer management system
+- ✅ Developer management with slugs
+- ✅ Developer profile pages
+- ✅ Team showcase section
 - ✅ Todo task management
 - ✅ Modular dashboard components
 - ✅ Organized frontend layout structure
-- ✅ Enhanced role-based access control
 - ✅ Service-based architecture
+- ✅ Rich HTML content rendering
+- ✅ CV upload and management
+- ✅ PDF CV generation (DevHome template & custom)
+- ✅ Image upload for editor
 
 ### 🚧 In Progress
 - 🔄 Enhanced analytics dashboard
