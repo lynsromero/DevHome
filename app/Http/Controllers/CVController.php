@@ -29,14 +29,10 @@ class CVController extends Controller
      */
     public function downloadCustom(User $user)
     {
-        if (!$user->custom_cv) {
-            return back()->with('error', 'No customized CV found.');
-        }
-
-        // Strip 'storage/' to get the actual path inside storage/app/public/
+        $user = User::where("slug", $user->slug)->firstOrFail();
+       
         $filePath = str_replace('storage/', '', $user->custom_cv);
 
-        // Get the absolute path to the file
         $absolutePath = storage_path('app/public/' . $filePath);
 
         if (!file_exists($absolutePath)) {
