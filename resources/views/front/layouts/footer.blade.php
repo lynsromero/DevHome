@@ -111,13 +111,15 @@
       <div class="animate_top oc tf ak/2 fm/12">
         <div class="cb oc">
           <h4 class="zh mj wa ah nh">
-            Subscribe To Get Notify
+            Want To Join Our Team?
           </h4>
           <p class="xa">
-            Enter your email address and get new notify about our new projects.
+            Send your portfolio or github profile link here.
           </p>
-          <form class="k xa oc ke me">
-            <input type="email" placeholder="Your Email" class="cj dc oc me ve ye gj cf hj zf fh ki dj" />
+          <form class="k xa oc ke me" method="POST" action="{{ route('team.request') }}">
+            @csrf
+            <input type="text" name="name" placeholder="Your Name" class="cj dc oc me ve ye gj cf hj zf fh ki dj" />
+            <input type="url" name="link" placeholder="Your Portfolio or Github Link" class="cj dc oc me ve ye gj cf hj zf fh ki dj" />
             <button type="submit" class="bf wi j o n sb ec wc xd yd _h">
               <svg width="18" height="13" viewBox="0 0 18 13" class="jf">
                 <path

@@ -7,6 +7,7 @@ use App\Models\ProjectView;
 use App\Models\Email;
 use App\Models\User;
 use App\Models\Todo;
+use App\Models\WantToJoin;
 use App\Models\Website_settings;
 use Carbon\Carbon;
 
@@ -32,6 +33,7 @@ class DashboardService
             'tasks'         => Todo::where('user_id', $user->id)->latest()->take(5)->get(),
             'tasksAll'      => Todo::where('user_id', $user->id)->get(),
             'siteSettings' => Website_settings::first(),
+            'requests' => WantToJoin::all(),
         ];
     }
 }
