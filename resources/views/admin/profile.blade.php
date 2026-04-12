@@ -47,7 +47,7 @@
                                         Github
                                     </h6>
                                     <a href="{{ $user->github_url }}" class="text-secondary newCOlor" target="_blank">
-                                        {{ trim(parse_url($user->github_url, PHP_URL_PATH), '/') }}
+                                        {{ str(trim(parse_url($user->github_url, PHP_URL_PATH), '/'))->ucfirst() }}
                                     </a>
 
                                 </li>
@@ -62,7 +62,7 @@
                                         Facebook
                                     </h6>
                                     <a href="{{ $user->facebook_url }}" class="text-secondary newCOlor" target="_blank">
-                                        {{ trim(parse_url($user->facebook_url, PHP_URL_PATH), '/') }}
+                                        {{str( trim(parse_url($user->facebook_url, PHP_URL_PATH), '/'))->ucfirst() }}
                                     </a>
                                 </li>
                                 <li
@@ -76,7 +76,7 @@
                                         LinkedIn
                                     </h6>
                                     <a href="{{ $user->linkedin_url }}" class="text-secondary newCOlor" target="_blank">
-                                        {{ trim(parse_url($user->linkedin_url, PHP_URL_PATH), '/') }}
+                                        {{str( trim(parse_url($user->linkedin_url, PHP_URL_PATH), '/'))->ucfirst() }}
                                     </a>
                                 </li>
                             </ul>

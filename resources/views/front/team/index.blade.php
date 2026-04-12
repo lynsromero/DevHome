@@ -17,10 +17,8 @@
                     <div class="profile-stacks">
                         <div class="stack-label">Expert Stacks</div>
                         <ul style="list-style: none; padding: 0;">
-                            @php
-                                $languages = explode(',', $user->languages);
-                            @endphp
-                            @foreach ($languages as $language)
+
+                            @foreach ($user->languages as $language)
                                 <li class="stack-item">{{ ucfirst(trim($language)) }}</li>
                             @endforeach
                         </ul>
@@ -101,10 +99,7 @@
                             <div>
                                 <dt class="profile-label">Tech Stack Skills</dt>
                                 <dd class="software-list">
-                                    @php
-                                        $languages = explode(',', $user->languages);
-                                    @endphp
-                                    @foreach ($languages as $language)
+                                    @foreach ($user->languages as $language)
                                         <span class="skill-badge profile-value">{{ ucfirst(trim($language)) }}</span>
                                     @endforeach
                                 </dd>

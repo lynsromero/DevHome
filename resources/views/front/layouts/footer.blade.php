@@ -17,8 +17,12 @@
               {{ $settings->footer_des }}
           @else
               <p class="kb in/5">
-                Dev Home is a collaborative portfolio platform showcasing modern web solutions, creative projects, and
-                technical expertise.
+                @if ($settings?->footer_des)
+                  {{ $settings->footer_des }}
+                @else
+                  Dev Home is a collaborative portfolio platform showcasing modern web solutions, creative projects, and
+                  technical expertise.
+                @endif
               </p>
 
             @endif

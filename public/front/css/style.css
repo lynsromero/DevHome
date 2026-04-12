@@ -2787,3 +2787,31 @@ body {
     width: 100%;
     height: 65px;
 }
+
+.unamec {
+    background-image: linear-gradient(
+        90deg,
+        #6bb7d8,
+        #8a5fbf,
+        #6bb7d8
+    ) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    display: inline-block !important;
+    animation: slide-gradient 2s linear infinite !important;
+}
+
+@keyframes slide-gradient {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.new-ww {
+    max-width: 785px;
+}

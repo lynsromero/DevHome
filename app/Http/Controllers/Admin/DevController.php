@@ -102,7 +102,6 @@ class DevController extends Controller
         $dev->name = $request->name;
         $dev->email = $request->email;
         $dev->image = $imageName;
-        $dev->custom_cv = $cvName;
         $dev->designation = $request->designation;
         if (empty($request->slug)) {
             $dev->slug = Str::slug($request->title);

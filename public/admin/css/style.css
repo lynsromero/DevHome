@@ -290,14 +290,29 @@
 }
 
 .unamec {
-    color: #eb1616;
+    background-image: linear-gradient(90deg, #6bb7d8, #8a5fbf, #6bb7d8) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    display: inline-block !important;
+    animation: slide-gradient 2s linear infinite !important;
+}
+
+@keyframes slide-gradient {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
 }
 
 .profile-pic-custom {
     width: 110px;
-    height: 110px; /* Must be equal to width */
-    object-fit: cover; /* This prevents the "squashing" effect */
-    object-position: center; /* Keeps the face in the middle */
+    height: 110px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .add-btn {
@@ -320,7 +335,9 @@
     background-color: #191c24 !important;
 }
 .box-shad {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow:
+        0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: 0.3s;
 }
 
@@ -333,4 +350,7 @@
 a {
     color: #70a9d4;
     text-decoration: none;
-}   
+}
+.text-primary {
+    color: #fb9d9d !important;
+}

@@ -72,9 +72,9 @@
   </div>
 
   <!-- Hero Content -->
-  <div class="la jd tf ck kn">
+  <div class="la jd new-ww tf ck kn">
     <div class="animate_top yg">
-      <span class="yh xa qb lh pk nl">
+      <span class="unamec xa qb lh pk nl">
         {{ $settings->tagline ?? 'Built With TailGrids Components' }}
       </span>
       <h1 class="zh mj xa bh lh ph wh qk xn ao">

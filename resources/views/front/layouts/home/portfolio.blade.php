@@ -83,8 +83,7 @@
                         Our Recent Projects
                     </h2>
                     <p>
-                        There are many variations of passages of Lorem Ipsum available but
-                        the majority have suffered alteration in some form.
+                        We deliver reliable solutions for all kinds of businesses. Choose yours and take your success to the next level.
                     </p>
                 </div>
             </div>

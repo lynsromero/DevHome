@@ -4,17 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Services\DashboardService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function index(DashboardService $service)
     {
-        $data = [
-            'user' => Auth::user(),
-        ];
+         $data = $service->getStats(Auth::user());
 
         return view('admin.profile', $data);
     }

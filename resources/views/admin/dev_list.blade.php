@@ -4,7 +4,7 @@
     <div class="bg-secondary rounded h-100 p-4">
       <table class="table">
         <div class="add-btn">
-          <a href="{{ route('add.dev') }}" type="button" class="btn btn-outline-success m-2">Add Devs</a>
+          <a href="{{ route('add.dev') }}" type="button" class="btn btn-primary m-2">Add Devs</a>
         </div>
         <thead>
           <tr>
