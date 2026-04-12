@@ -1,9 +1,10 @@
 <div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-secondary navbar-dark">
         <a href="{{ route('dashboard') }}" class="navbar-brand mx-4 mb-3">
-            <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Devs Home</h3>
+            <img class="text-primary" src="{{ asset('storage/' . $siteSettings?->logo) ?? 'default-icon.png' }}"
+                alt="Logo" style="height: 50px;">
         </a>
-        <div class="d-flex align-items-center ms-4 mb-4">
+        <div class="d-flex align-items-center ms-4 mb-4"> 
             <div class="position-relative">
                 {{-- Using your asset helper for the perfect circle image --}}
                 <img class="rounded-circle"
@@ -45,9 +46,12 @@
                 </div>
             </div>
 
-            <a href="{{ route('website.settings') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Website Settings</a>
-            <a href="{{ route('email.list') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>E-mails</a>
-            <a href="{{ route('website.contacts') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Website Contacts</a>
+            <a href="{{ route('website.settings') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Website
+                Settings</a>
+            <a href="{{ route('email.list') }}" class="nav-item nav-link"><i
+                    class="fa fa-keyboard me-2"></i>E-mails</a>
+            <a href="{{ route('website.contacts') }}" class="nav-item nav-link"><i
+                    class="fa fa-keyboard me-2"></i>Website Contacts</a>
             <a href="{{ route('dev.list') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Dev List</a>
             <a href="{{ route('todo') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>To Do List</a>
         </div>

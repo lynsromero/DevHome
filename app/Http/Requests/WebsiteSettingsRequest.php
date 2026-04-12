@@ -22,7 +22,7 @@ class WebsiteSettingsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tagline' => 'nullable|string|min:45|max:55',
+            'tagline' => 'nullable|string|min:20|max:55',
             'tagline_h' => 'nullable|string|min:45|max:60',
             'tagline_p' => 'nullable|string|min:140|max:155',
             'about_us_img1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',

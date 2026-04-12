@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Devs Home</title>
+    <title>Dev Home | Admin</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="{{ asset('admin/img/favicon.ico') }}" rel="icon">
-
+    <link rel="icon" href="{{ asset('storage/' . $siteSettings?->fav_icon) ?? 'default-icon.png' }}"
+        type="image/x-icon">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -89,56 +89,59 @@
     <!-- Text Editor -->
     <script src="https://cdn.tiny.cloud/1/kry2se120hc758lhd20l2wf5axnnixf8pf4x0fve6lewmlay/tinymce/8/tinymce.min.js"
         referrerpolicy="origin" crossorigin="anonymous"></script>
-<script>
-    tinymce.init({
-        selector: 'textarea#description',
-        plugins: [
-            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'image', // Added 'image' plugin
-            'searchreplace', 'table', 'visualblocks', 'wordcount', 'autoresize'
-        ],
-        // Added 'image' to the toolbar
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | link image media table | align lineheight | checklist numlist bullist | emoticons charmap | removeformat',
+    <script>
+        tinymce.init({
+            selector: 'textarea#description',
+            plugins: [
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media',
+                'image', // Added 'image' plugin
+                'searchreplace', 'table', 'visualblocks', 'wordcount', 'autoresize'
+            ],
+            // Added 'image' to the toolbar
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | link image media table | align lineheight | checklist numlist bullist | emoticons charmap | removeformat',
 
-        // Tell TinyMCE to allow file picking for both images and media
-        file_picker_types: 'image media', 
-        
-        file_picker_callback: function (cb, value, meta) {
-            const input = document.createElement('input');
-            input.setAttribute('type', 'file');
+            // Tell TinyMCE to allow file picking for both images and media
+            file_picker_types: 'image media',
 
-            // Automatically set the file filter based on which button you clicked
-            if (meta.filetype === 'image') {
-                input.setAttribute('accept', 'image/*');
-            } else if (meta.filetype === 'media') {
-                input.setAttribute('accept', 'video/*,audio/*');
-            }
+            file_picker_callback: function(cb, value, meta) {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
 
-            input.onchange = function () {
-                const file = this.files[0];
-                const reader = new FileReader();
-                
-                reader.onload = function () {
-                    const id = 'blobid' + (new Date()).getTime();
-                    const blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                    const base64 = reader.result.split(',')[1];
-                    const blobInfo = blobCache.create(id, file, base64);
-                    blobCache.add(blobInfo);
+                // Automatically set the file filter based on which button you clicked
+                if (meta.filetype === 'image') {
+                    input.setAttribute('accept', 'image/*');
+                } else if (meta.filetype === 'media') {
+                    input.setAttribute('accept', 'video/*,audio/*');
+                }
 
-                    // This callback now sends the correct data back to the correct dialog
-                    cb(blobInfo.blobUri(), { title: file.name });
+                input.onchange = function() {
+                    const file = this.files[0];
+                    const reader = new FileReader();
+
+                    reader.onload = function() {
+                        const id = 'blobid' + (new Date()).getTime();
+                        const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        const base64 = reader.result.split(',')[1];
+                        const blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        // This callback now sends the correct data back to the correct dialog
+                        cb(blobInfo.blobUri(), {
+                            title: file.name
+                        });
+                    };
+                    reader.readAsDataURL(file);
                 };
-                reader.readAsDataURL(file);
-            };
 
-            input.click();
-        },
+                input.click();
+            },
 
-        min_height: 500,
-        autoresize_bottom_margin: 20,
-        promotion: false,
-        statusbar: false
-    });
-</script>
+            min_height: 500,
+            autoresize_bottom_margin: 20,
+            promotion: false,
+            statusbar: false
+        });
+    </script>
     @stack('scripts')
 </body>
 

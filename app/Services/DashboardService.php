@@ -7,6 +7,7 @@ use App\Models\ProjectView;
 use App\Models\Email;
 use App\Models\User;
 use App\Models\Todo;
+use App\Models\Website_settings;
 use Carbon\Carbon;
 
 class DashboardService
@@ -23,13 +24,14 @@ class DashboardService
             'totalViews'    => $projects->sum('views'),
             'emails'   => Email::where('user_id', $user->id)->get(),
             'devs' => User::all(),
-            'dashemails'   => Email::where('user_id', $user->id)->latest()->take(6)->get(),
+            'dashemails' => Email::where('user_id', $user->id)->latest()->take(6)->get(),
             'todaysViews'   => ProjectView::whereHas('project', fn($q) => $q->where('user_id', $user->id))
                                 ->whereDate('created_at', Carbon::today())->count(),
             'todaysEmails'  => Email::where('user_id', $user->id)
                                 ->whereDate('created_at', Carbon::today())->count(),
             'tasks'         => Todo::where('user_id', $user->id)->latest()->take(5)->get(),
             'tasksAll'      => Todo::where('user_id', $user->id)->get(),
+            'siteSettings' => Website_settings::first(),
         ];
     }
 }

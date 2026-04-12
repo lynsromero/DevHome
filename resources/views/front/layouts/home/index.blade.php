@@ -1,26 +1,26 @@
 @extends('front.layouts.master')
 @section('content')
-<!-- ===== Hero Section Start ===== -->
-      @include('front.layouts.home.hero')
-      <!-- ===== Hero Section End ===== -->
-    
-      <!-- ===== About Section Start ===== -->
-      @include('front.layouts.home.about')
-      <!-- ===== About Section End ===== -->
+    <!-- ===== Hero Section Start ===== -->
+    @include('front.layouts.home.hero')
+    <!-- ===== Hero Section End ===== -->
 
-      <!-- ====== Stats Section Start -->
-      {{-- @include('stats') --}}
-      <!-- ====== Stats Section End -->
+    <!-- ===== About Section Start ===== -->
+    @include('front.layouts.home.about')
+    <!-- ===== About Section End ===== -->
 
-      <!-- ====== Portfolio Section Start -->
-      @include('front.layouts.home.portfolio')
-      <!-- ====== Portfolio Section End -->
-      <!-- ====== Team Section Start -->
-      @include('front.layouts.home.team')
-      <!-- ====== Team Section End -->
+    <!-- ====== Stats Section Start -->
+    {{-- @include('stats') --}}
+    <!-- ====== Stats Section End -->
 
-      <!-- ====== Contact Section Start -->    
-      @include('front.layouts.contact')
+    <!-- ====== Portfolio Section Start -->
+    @include('front.layouts.home.portfolio')
+    <!-- ====== Portfolio Section End -->
+    <!-- ====== Team Section Start -->
+    @include('front.layouts.home.team')
+    <!-- ====== Team Section End -->
+
+    <!-- ====== Contact Section Start -->
+    @include('front.layouts.contact')
     <!-- ====== Contact Section End -->
 @endsection
 

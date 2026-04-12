@@ -88,7 +88,7 @@
                         <dl>
                             <div>
                                 <dt class="profile-label">Email Adress</dt>
-                                <a href="mailto:{{ $user->email }}">
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $user->email }}" target="_blank">
                                     <dd class="profile-value iconset"><span><svg xmlns="http://www.w3.org/2000/svg"
                                                 width="20" height="20" viewBox="0 0 24 24" fill="none"
                                                 stroke="#3056d3" stroke-width="2" stroke-linecap="round"

@@ -2,47 +2,71 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Devs Home</title>
-  <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+    
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+    if (localStorage.getItem('darkMode') === 'false') {
+        // User explicitly chose light mode
+        document.documentElement.classList.remove('c');
+    } else {
+        // Default to dark mode
+        document.documentElement.classList.add('c');
+    }
+</script>
+    <title>Devs Home</title>
+    <link rel="icon" href="{{ asset('storage/' . $settings?->fav_icon) ?? 'default-icon.png' }}" type="image/x-icon">
+    <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+    @stack('styles')
 </head>
 
-<body
-  x-data="{ page: 'home', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
-  x-init="
-         darkMode = JSON.parse(localStorage.getItem('darkMode'));
-         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
-  :class="{'c af': darkMode === true}">
-  <!-- ===== Preloader Start ===== -->
-  <div x-show="loaded"
-    x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})"
-    class="i l n cd lc cf ha">
-    <div class="e"></div>
-  </div>
-  <!-- ===== Preloader End ===== -->
+<body 
+    x-data="{ 
+        page: 'home', 
+        'loaded': true, 
+        'darkMode': true, 
+        'stickyMenu': false, 
+        'navigationOpen': false, 
+        'scrollTop': false 
+    }" 
+    x-init="
+        const savedMode = localStorage.getItem('darkMode');
+        if (savedMode !== null) {
+            darkMode = JSON.parse(savedMode);
+        } else {
+            darkMode = true; // Default for new users
+        }
+        $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))
+    " 
+    :class="{ 'c af': darkMode === true }"
+>
+    <!-- ===== Preloader Start ===== -->
+    <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => { setTimeout(() => loaded = false, 500) })" class="i l n cd lc cf ha">
+        <div class="e"></div>
+    </div>
+    <!-- ===== Preloader End ===== -->
 
-  <!-- ===== Header Start ===== -->
+    <!-- ===== Header Start ===== -->
 
-  @include('front.layouts.header')
+    @include('front.layouts.header')
 
-  <!-- ===== Header End ===== -->
+    <!-- ===== Header End ===== -->
 
-  <main>
+    <main>
 
-    @yield('content')
+        @yield('content')
 
-    
 
-  </main>
-  <!-- ===== Footer Start ===== -->
-  @include('front.layouts.footer')
-  <!-- ====== Footer Section Start -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  @stack('scripts')
-  <script defer src="{{ asset('front/js/bundle.js') }}"></script>
+
+    </main>
+    <!-- ===== Footer Start ===== -->
+    @include('front.layouts.footer')
+    <!-- ====== Footer Section Start -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @stack('scripts')
+    <script defer src="{{ asset('front/js/bundle.js') }}"></script>
 </body>
 
 </html>

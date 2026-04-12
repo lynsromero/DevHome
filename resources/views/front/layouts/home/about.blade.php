@@ -50,18 +50,18 @@
             WHAT WE BUILD
           </span>
           <h2 class="ua bh lh sh zh mj lk vk ll zm cn vn">
-            We grow your business with full potential by the innovation.
+            {{ $settings->what_we_build ?? 'We grow your business with full potential by the innovation.' }}
           </h2>
           <h3 class="va ah lh zh mj">Why Dev Home</h3>
           <p class="wa">
-            Proin gravida nibh vel velit auctor aliquet. aks Aenean
+            {{ $settings->why_dev_home ?? 'Proin gravida nibh vel velit auctor aliquet. aks Aenean
             sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,
-            nec sagittis sem, tidiomic consequat ipsum.
+            nec sagittis sem, tidiomic consequat ipsum.'}}
           </p>
           <h3 class="va ah lh zh mj">How We Work</h3>
           <p>
-            Proin gravida nibh vel velit auctor aliquet. aks Aenean
-            sollicitudin, lorem quis bibendum auctor.
+            {{ $settings->how_we_work ?? 'Proin gravida nibh vel velit auctor aliquet. aks Aenean
+            sollicitudin, lorem quis bibendum auctor.'}}
           </p>
         </div>
       </div>

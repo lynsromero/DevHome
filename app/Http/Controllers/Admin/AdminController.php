@@ -11,7 +11,7 @@ use App\Services\DashboardService;
 
 class AdminController extends Controller
 {
-    public function index(DashboardService $service)
+    public function index(DashboardService $service)    
     {
         $stats = $service->getStats(Auth::user());
         return view('admin.dashboard', $stats);

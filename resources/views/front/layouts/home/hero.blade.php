@@ -75,23 +75,23 @@
   <div class="la jd tf ck kn">
     <div class="animate_top yg">
       <span class="yh xa qb lh pk nl">
-        Built With TailGrids Components
+        {{ $settings->tagline ?? 'Built With TailGrids Components' }}
       </span>
       <h1 class="zh mj xa bh lh ph wh qk xn ao">
-        Ready for Any Websites Crafted by TailGrids
+        {{ $settings->tagline_h ?? 'Ready for Any Websites Crafted by TailGrids' }}
       </h1>
       <p class="eb mh ol">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at
-        egestas tortor. Morbi sed odio id purus pellentesque iaculis.
+        {{ $settings->tagline_p ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at
+        egestas tortor. Morbi sed odio id purus pellentesque iaculis.'}}
       </p>
       <ul class="sb wd xd yd">
         <li>
-          <a href="#" class="bf ja ub xd yd ve ze cg oe dg _h xi dk lg:px-ud-8 ln">
-            Know More
+          <a href="#projects" class="bf ja ub xd yd ve ze cg oe dg _h xi dk lg:px-ud-8 ln">
+            View Projects
           </a>
         </li>
         <li>
-          <a href="#" class="yh _e vi ui ja ub xd yd oe ve cg dg li aj dk lm ln">
+          <a href="#contact" class="yh _e vi ui ja ub xd yd oe ve cg dg li aj dk lm ln">
             Contact Us
           </a>
         </li>
