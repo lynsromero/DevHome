@@ -7,43 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script>
-    if (localStorage.getItem('darkMode') === 'false') {
-        // User explicitly chose light mode
-        document.documentElement.classList.remove('c');
-    } else {
-        // Default to dark mode
-        document.documentElement.classList.add('c');
-    }
-</script>
     <title>Devs Home</title>
     <link rel="icon" href="{{ asset('storage/' . $settings?->fav_icon) ?? 'default-icon.png' }}" type="image/x-icon">
     <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
-
-<body 
-    x-data="{ 
-        page: 'home', 
-        'loaded': true, 
-        'darkMode': true, 
-        'stickyMenu': false, 
-        'navigationOpen': false, 
-        'scrollTop': false 
-    }" 
-    x-init="
-        const savedMode = localStorage.getItem('darkMode');
-        if (savedMode !== null) {
-            darkMode = JSON.parse(savedMode);
-        } else {
-            darkMode = true; // Default for new users
-        }
-        $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))
-    " 
-    :class="{ 'c af': darkMode === true }"
->
+<body class="c af" x-data="{ page: 'home', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }" x-init="let savedMode = localStorage.getItem('darkMode'); darkMode = savedMode === null ? true : JSON.parse(savedMode); $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{ 'c af': darkMode === true }">
     <!-- ===== Preloader Start ===== -->
-    <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => { setTimeout(() => loaded = false, 500) })" class="i l n cd lc cf ha">
+    <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => { setTimeout(() => loaded = false, 500) })" class="i l n cd lc ha af" :class="darkMode ? 'af' : 'cf'">
         <div class="e"></div>
     </div>
     <!-- ===== Preloader End ===== -->
